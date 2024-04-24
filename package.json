@@ -20,11 +20,12 @@
     "expo-modules-core": "^1.11.8",
     "isomorphic-webcrypto": "^2.3.8",
     "react": "18.2.0",
-    "react-native": "0.73.4",
+    "react-native": "0.73.7",
     "react-native-get-random-values": "^1.10.0",
     "react-native-mmkv": "^2.11.0",
     "react-native-securerandom": "^1.0.1",
     "react-native-url-polyfill": "^2.0.0",
+    "react-native-flipper": "^0.212.0",
     "stream": "^0.0.2",
     "text-encoding-polyfill": "^0.6.7",
     "web-streams-polyfill": "^3.3.2"
