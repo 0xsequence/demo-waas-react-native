@@ -1,4 +1,10 @@
 PODS:
+  - AppAuth (1.7.5):
+    - AppAuth/Core (= 1.7.5)
+    - AppAuth/ExternalUserAgent (= 1.7.5)
+  - AppAuth/Core (1.7.5)
+  - AppAuth/ExternalUserAgent (1.7.5):
+    - AppAuth/Core
   - boost (1.83.0)
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
@@ -68,6 +74,14 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
+  - GoogleSignIn (7.0.0):
+    - AppAuth (~> 1.5)
+    - GTMAppAuth (< 3.0, >= 1.3)
+    - GTMSessionFetcher/Core (< 4.0, >= 1.1)
+  - GTMAppAuth (2.0.0):
+    - AppAuth/Core (~> 1.6)
+    - GTMSessionFetcher/Core (< 4.0, >= 1.5)
+  - GTMSessionFetcher/Core (3.4.1)
   - hermes-engine (0.73.7):
     - hermes-engine/Pre-built (= 0.73.7)
   - hermes-engine/Pre-built (0.73.7)
@@ -956,6 +970,15 @@ PODS:
     - MMKV (>= 1.3.3)
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
+  - react-native-quick-base64 (2.1.2):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
+  - react-native-quick-crypto (0.6.1):
+    - OpenSSL-Universal
+    - React
+    - React-callinvoker
+    - React-Core
   - React-nativeconfig (0.73.7)
   - React-NativeModulesApple (0.73.7):
     - glog
@@ -1123,6 +1146,9 @@ PODS:
     - React-jsi (= 0.73.7)
     - React-logger (= 0.73.7)
     - React-perflogger (= 0.73.7)
+  - RNGoogleSignin (11.0.1):
+    - GoogleSignIn (~> 7.0.0)
+    - React-Core
   - RNSecureRandom (1.0.1):
     - React
   - SocketRocket (0.6.1)
@@ -1184,6 +1210,8 @@ DEPENDENCIES:
   - react-native-flipper (from `../node_modules/react-native-flipper`)
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
+  - react-native-quick-base64 (from `../node_modules/react-native-quick-base64`)
+  - react-native-quick-crypto (from `../node_modules/react-native-quick-crypto`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1204,11 +1232,13 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
   - RNSecureRandom (from `../node_modules/react-native-securerandom`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - AppAuth
     - CocoaAsyncSocket
     - Flipper
     - Flipper-Boost-iOSX
@@ -1219,6 +1249,9 @@ SPEC REPOS:
     - Flipper-PeerTalk
     - FlipperKit
     - fmt
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - libevent
     - MMKV
     - MMKVCore
@@ -1287,6 +1320,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-get-random-values"
   react-native-mmkv:
     :path: "../node_modules/react-native-mmkv"
+  react-native-quick-base64:
+    :path: "../node_modules/react-native-quick-base64"
+  react-native-quick-crypto:
+    :path: "../node_modules/react-native-quick-crypto"
   React-nativeconfig:
     :path: "../node_modules/react-native/ReactCommon"
   React-NativeModulesApple:
@@ -1327,12 +1364,15 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNGoogleSignin:
+    :path: "../node_modules/@react-native-google-signin/google-signin"
   RNSecureRandom:
     :path: "../node_modules/react-native-securerandom"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: fea03f2699887d960129cc54bba7e52542b6f953
@@ -1348,6 +1388,9 @@ SPEC CHECKSUMS:
   FlipperKit: 37525a5d056ef9b93d1578e04bc3ea1de940094f
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
+  GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
+  GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
+  GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
   hermes-engine: 39589e9c297d024e90fe68f6830ff86c4e01498a
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   MMKV: f902fb6719da13c2ab0965233d8963a59416f911
@@ -1377,6 +1420,8 @@ SPEC CHECKSUMS:
   react-native-flipper: 9c1957af24b76493ba74f46d000a5c1d485e7731
   react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
   react-native-mmkv: 1fdc81aa70c1aba09370718e6a63a09cbbbac8d2
+  react-native-quick-base64: e1ea036b3dec44c6da2439bd62881a09de614b23
+  react-native-quick-crypto: 455c1b411db006dba1026a30681ececb19180187
   React-nativeconfig: 754233aac2a769578f828093b672b399355582e6
   React-NativeModulesApple: a03b2da2b8e127d5f5ee29c683e0deba7a9e1575
   React-perflogger: 68ec84e2f858a3e35009aef8866b55893e5e0a1f
@@ -1397,10 +1442,11 @@ SPEC CHECKSUMS:
   React-runtimescheduler: a884a55560e2a90caa1cbe0b9eaa24a5add4fa2c
   React-utils: d07d009101c7dabff68b710da5c4a47b7a850d98
   ReactCommon: 8cae78d3c3eceff20ee4bbca8bb73b675a45fd5d
+  RNGoogleSignin: 24d3b3261f78b0fae0aa013f8ab6f8d25e369b0c
   RNSecureRandom: 07efbdf2cd99efe13497433668e54acd7df49fef
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 47d399a73c0c0caa9ff824e5c657eae31215bfee
 
 PODFILE CHECKSUM: 66593e194079a7a37a7c86fbd7c2279599b0860e
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2

@@ -6,12 +6,12 @@ import {ReadableStream} from 'web-streams-polyfill/ponyfill';
 import 'text-encoding-polyfill';
 globalThis.ReadableStream = ReadableStream;
 
-import crypto from 'isomorphic-webcrypto';
+import Crypto from 'react-native-quick-crypto';
 
 const prepareCrypto = async () => {
   console.log('globalThis.crypto', globalThis.crypto);
-  await crypto.ensureSecure();
-  globalThis.crypto = crypto;
+  // await Crypto.ensureSecure();
+  globalThis.crypto = Crypto;
 };
 
 import {MMKV} from 'react-native-mmkv';
