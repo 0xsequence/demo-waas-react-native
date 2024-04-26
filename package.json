@@ -49,8 +49,6 @@
     "react-native-tcp": "^3.2.1",
     "react-native-udp": "^2.1.0",
     "react-native-url-polyfill": "^2.0.0",
-    "react-native-webview": "^13.8.6",
-    "react-native-webview-crypto": "^0.0.25",
     "readable-stream": "1.0.33",
     "rn-nodeify": "^10.3.0",
     "stream": "^0.0.2",
