@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "demo-waas-react-native",
+    "slug": "demo-waas-react-native",
+    "version": "1.0.0",
+    "sdkVersion": "51.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "android": {
+      "package": "app.sequence.demowaasreactnative"
+    },
+    "ios": {
+      "bundleIdentifier": "app.sequence.demowaasreactnative"
+    }
+  }
+}
