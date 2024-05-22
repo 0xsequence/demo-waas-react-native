@@ -83,9 +83,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'app.sequence.demowaasreactnative'
+    namespace 'com.horizon.sequencewaasdemo'
     defaultConfig {
-        applicationId 'app.sequence.demowaasreactnative'
+        applicationId 'com.horizon.sequencewaasdemo'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

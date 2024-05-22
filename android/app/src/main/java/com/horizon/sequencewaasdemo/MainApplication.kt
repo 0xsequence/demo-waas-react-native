@@ -1,4 +1,4 @@
-package app.sequence.demowaasreactnative
+package com.horizon.sequencewaasdemo
 
 import android.app.Application
 import android.content.res.Configuration

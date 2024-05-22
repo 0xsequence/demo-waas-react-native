@@ -4,16 +4,12 @@
     "slug": "demo-waas-react-native",
     "version": "1.0.0",
     "sdkVersion": "51.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android"],
     "android": {
-      "package": "app.sequence.demowaasreactnative"
+      "package": "com.horizon.sequencewaasdemo"
     },
     "ios": {
-      "bundleIdentifier": "app.sequence.demowaasreactnative"
+      "bundleIdentifier": "com.horizon.sequence-waas-demo"
     }
   }
 }
