@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  Platform,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
 import "react-native-get-random-values";
 import {
   AuthRequest,
@@ -7,8 +17,13 @@ import {
   AccessTokenRequestConfig,
 } from "expo-auth-session";
 import { KeychainSecureStoreBackend } from "@0xsequence/react-native";
-import { SequenceWaaS } from "@0xsequence/waas";
+import { SequenceWaaS, networks } from "@0xsequence/waas";
 import { MMKV } from "react-native-mmkv";
+import * as WebBrowser from "expo-web-browser";
+
+import styles from "./styles";
+
+import CopyButton from "./components/CopyButton";
 
 const projectAccessKey = "AQAAAAAAAGLOEg2Q5NNVBLgUqoa_PVQvcmI";
 const waasConfigKey =
@@ -35,9 +50,11 @@ const localStorage = {
   },
 };
 
+const initialNetwork = "arbitrum-sepolia";
+
 const sequence = new SequenceWaaS(
   {
-    network: "polygon",
+    network: initialNetwork,
     projectAccessKey: projectAccessKey,
     waasConfigKey: waasConfigKey,
   },
@@ -46,19 +63,143 @@ const sequence = new SequenceWaaS(
   new KeychainSecureStoreBackend()
 );
 
+const messageToSign = "Hello world";
+
 export default function App() {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [network, setNetwork] = useState<string>(initialNetwork);
+
+  const [isSignMessageInProgress, setIsSignMessageInProgress] = useState(false);
+  const [sig, setSig] = useState<string | undefined>();
+
+  const [isSendTxnInProgress, setIsSendTxnInProgress] = useState(false);
+  const [txnHash, setTxnHash] = useState<string | undefined>();
 
   useEffect(() => {
     isSignedIn(setWalletAddress);
   }, []);
 
+  const signMessage = async () => {
+    setIsSignMessageInProgress(true);
+    const sig = await sequence.signMessage({ message: messageToSign });
+    setIsSignMessageInProgress(false);
+
+    setSig(sig.data.signature);
+  };
+
+  const sendTxn = async () => {
+    setIsSendTxnInProgress(true);
+    const txn = await sequence.sendTransaction({
+      transactions: [
+        {
+          to: walletAddress,
+          value: 0,
+        },
+      ],
+    });
+    setIsSendTxnInProgress(false);
+    if (txn.data?.txHash) {
+      setTxnHash(txn.data.txHash);
+    }
+  };
+
   return (
     <View style={styles.container}>
+      <StatusBar
+        barStyle={Platform.OS === "ios" ? "light-content" : "dark-content"}
+      />
       {walletAddress && (
-        <>
-          <View>
-            <Text>Wallet address: {walletAddress}</Text>
+        <ScrollView style={{ paddingVertical: 60, width: "100%" }}>
+          <View style={{ paddingBottom: 150 }}>
+            <View style={styles.demoItemContainer}>
+              <Text style={styles.demoItemTitle}>Wallet address</Text>
+              <Text style={styles.demoItemText}>{walletAddress}</Text>
+              <CopyButton stringToCopy={walletAddress} />
+            </View>
+
+            <View style={styles.demoItemContainer}>
+              <Text style={styles.demoItemTitle}>Network</Text>
+              <Text style={styles.demoItemText}>
+                {networks.nameOfNetwork(network)}
+              </Text>
+            </View>
+
+            <TouchableOpacity activeOpacity={0.8} onPress={signMessage}>
+              <View style={styles.demoItemContainer}>
+                <Text style={styles.demoItemTitle}>Sign a message</Text>
+                <Text style={styles.demoItemTextSecondary}>
+                  Sign a message with your wallet.
+                </Text>
+                <Text style={styles.demoItemTextSecondary}>
+                  Message to sign: "{messageToSign}"
+                </Text>
+                {isSignMessageInProgress && (
+                  <View style={{ paddingVertical: 5, width: 20 }}>
+                    <ActivityIndicator size="small" color="#fff" />
+                  </View>
+                )}
+              </View>
+            </TouchableOpacity>
+
+            {sig && (
+              <View style={styles.demoItemContainer}>
+                <Text style={styles.demoItemTitleSecondary}>
+                  Signature for "{messageToSign}":
+                </Text>
+                <ScrollView style={{ height: 140 }} nestedScrollEnabled={true}>
+                  <Text style={styles.demoItemText}>{sig}</Text>
+                </ScrollView>
+                <CopyButton stringToCopy={sig} />
+              </View>
+            )}
+
+            <TouchableOpacity activeOpacity={0.8} onPress={sendTxn}>
+              <View style={styles.demoItemContainer}>
+                <Text style={styles.demoItemTitle}>Send a transaction</Text>
+                <Text style={styles.demoItemTextSecondary}>
+                  Send a transaction with your wallet.
+                </Text>
+
+                {isSendTxnInProgress && (
+                  <View style={{ paddingVertical: 5, width: 20 }}>
+                    <ActivityIndicator size="small" color="#fff" />
+                  </View>
+                )}
+              </View>
+            </TouchableOpacity>
+
+            {txnHash && (
+              <View style={styles.demoItemContainer}>
+                <Text style={styles.demoItemTitleSecondary}>
+                  Transaction hash:
+                </Text>
+
+                <Text style={styles.demoItemText}>{txnHash}</Text>
+
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => {
+                    WebBrowser.openBrowserAsync(
+                      `https://sepolia.arbiscan.io/tx/${txnHash}`
+                    );
+                  }}
+                >
+                  <View
+                    style={{
+                      alignSelf: "baseline",
+                      backgroundColor: "#000",
+                      padding: 4,
+                      borderRadius: 6,
+                      marginTop: 6,
+                    }}
+                  >
+                    <Text style={styles.demoItemTextSecondary}>
+                      View on Arbiscan
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            )}
 
             <Button
               title="Sign out"
@@ -68,7 +209,7 @@ export default function App() {
               }}
             />
           </View>
-        </>
+        </ScrollView>
       )}
       {!walletAddress && (
         <Button
@@ -86,23 +227,14 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
 // Helpers
 
 const isSignedIn = async (
   setWalletAddress: React.Dispatch<React.SetStateAction<string>>
 ) => {
-  const result = await sequence.isSignedIn();
+  const isSignedIn = await sequence.isSignedIn();
 
-  if (result) {
+  if (isSignedIn) {
     sequence.getAddress().then((address) => {
       setWalletAddress(address);
     });
