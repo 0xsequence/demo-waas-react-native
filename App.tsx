@@ -1,3 +1,5 @@
+import "react-native-random-values-jsi-helper";
+
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -9,8 +11,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-import "react-native-get-random-values";
 import {
   AuthRequest,
   exchangeCodeAsync,
@@ -24,10 +24,14 @@ import * as WebBrowser from "expo-web-browser";
 import styles from "./styles";
 
 import CopyButton from "./components/CopyButton";
+import appleAuth, {
+  AppleButton,
+  appleAuthAndroid,
+} from "@invertase/react-native-apple-authentication";
 
 const projectAccessKey = "AQAAAAAAAGLOEg2Q5NNVBLgUqoa_PVQvcmI";
 const waasConfigKey =
-  "eyJwcm9qZWN0SWQiOjI1Mjk0LCJycGNTZXJ2ZXIiOiJodHRwczovL3dhYXMuc2VxdWVuY2UuYXBwIn0=";
+  "eyJwcm9qZWN0SWQiOjI1Mjk0LCJlbWFpbFJlZ2lvbiI6ImNhLWNlbnRyYWwtMSIsImVtYWlsQ2xpZW50SWQiOiI2dXR0aWJhZmwyZTQxbWU5OTc1NXE3cnJraCIsInJwY1NlcnZlciI6Imh0dHBzOi8vd2Fhcy5zZXF1ZW5jZS5hcHAifQ==";
 const webClientId =
   "970987756660-35a6tc48hvi8cev9cnknp0iugv9poa23.apps.googleusercontent.com";
 const iosClientId =
@@ -203,25 +207,53 @@ export default function App() {
 
             <Button
               title="Sign out"
-              onPress={() => {
-                sequence.dropSession();
+              onPress={async () => {
+                setSig(undefined);
+                setTxnHash(undefined);
                 setWalletAddress(null);
+                await sequence.dropSession();
+                sequence.getSessionHash();
               }}
             />
           </View>
         </ScrollView>
       )}
       {!walletAddress && (
-        <Button
-          title="Sign in to WaaS (Google)"
-          onPress={async () => {
-            const result = await signInWithGoogle();
-            if (result.walletAddress) {
-              setWalletAddress(result.walletAddress);
-            }
-            console.log("result", result);
-          }}
-        />
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+          <Button
+            title="Sign in with Google"
+            onPress={async () => {
+              const result = await signInWithGoogle();
+              if (result.walletAddress) {
+                setWalletAddress(result.walletAddress);
+              }
+              console.log("result", result);
+            }}
+          />
+          <View style={{ marginTop: 10 }} />
+          <AppleButton
+            buttonStyle={AppleButton.Style.WHITE}
+            buttonType={AppleButton.Type.SIGN_IN}
+            style={{
+              width: 160, // You must specify a width
+              height: 45, // You must specify a height
+            }}
+            onPress={async () => {
+              if (Platform.OS === "ios") {
+                const result = await signInWithAppleIOS();
+                if (result.walletAddress) {
+                  setWalletAddress(result.walletAddress);
+                }
+              }
+              if (Platform.OS === "android") {
+                const result = await signInWithAppleAndroid();
+                if (result.walletAddress) {
+                  setWalletAddress(result.walletAddress);
+                }
+              }
+            }}
+          />
+        </View>
       )}
     </View>
   );
@@ -238,6 +270,8 @@ const isSignedIn = async (
     sequence.getAddress().then((address) => {
       setWalletAddress(address);
     });
+  } else {
+    sequence.getSessionHash();
   }
 };
 
@@ -283,10 +317,8 @@ const signInWithGoogle = async () => {
     return undefined;
   }
 
-  console.log("result", result);
   const serverAuthCode = result?.params?.code;
 
-  console.log("serverAuthCode", serverAuthCode);
   const configForTokenExchange: AccessTokenRequestConfig = {
     code: serverAuthCode,
     redirectUri,
@@ -309,8 +341,6 @@ const signInWithGoogle = async () => {
     throw new Error("No idToken");
   }
 
-  console.log("idToken", idToken);
-
   const waasSession = await authenticateWithWaas(idToken);
 
   if (!waasSession) {
@@ -320,6 +350,98 @@ const signInWithGoogle = async () => {
   return {
     userInfo: {
       user: userInfo,
+      idToken,
+    },
+    walletAddress: waasSession.wallet,
+  };
+};
+
+const signInWithAppleIOS = async () => {
+  const nonce = await sequence.getSessionHash();
+
+  // performs login request
+  const appleAuthRequestResponse = await appleAuth.performRequest({
+    nonce,
+    hashNonceAutomatically: false,
+    requestedOperation: appleAuth.Operation.LOGIN,
+    // Note: it appears putting FULL_NAME first is important, see issue #293
+    requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
+  });
+
+  // get current authentication state for user
+  // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
+  const credentialState = await appleAuth.getCredentialStateForUser(
+    appleAuthRequestResponse.user
+  );
+
+  // use credentialState response to ensure the user is authenticated
+  if (credentialState === appleAuth.State.AUTHORIZED) {
+    // user is authenticated
+
+    const idToken = appleAuthRequestResponse.identityToken;
+
+    if (!idToken) {
+      throw new Error("No idToken");
+    }
+
+    const waasSession = await authenticateWithWaas(idToken);
+
+    if (!waasSession) {
+      throw new Error("No waass session");
+    }
+
+    return {
+      userInfo: {
+        user: appleAuthRequestResponse.user,
+        idToken,
+      },
+      walletAddress: waasSession.wallet,
+    };
+  }
+};
+
+const signInWithAppleAndroid = async () => {
+  const nonce = await sequence.getSessionHash();
+
+  // Configure the request
+  appleAuthAndroid.configure({
+    // The Service ID you registered with Apple
+    clientId: "com.horizon.waas-demo",
+
+    // Return URL added to your Apple dev console. We intercept this redirect, but it must still match
+    // the URL you provided to Apple. It can be an empty route on your backend as it's never called.
+    redirectUri: "https://waas-demo.sequence.app/callback",
+
+    // The type of response requested - code, id_token, or both.
+    responseType: appleAuthAndroid.ResponseType.ALL,
+
+    // The amount of user information requested from Apple.
+    scope: appleAuthAndroid.Scope.ALL,
+
+    nonce,
+
+    hashNonceAutomatically: false,
+  });
+
+  // Open the browser window for user sign in
+  const response = await appleAuthAndroid.signIn();
+
+  const idToken = response.id_token;
+
+  console.log("idToken", idToken);
+
+  if (!idToken) {
+    throw new Error("No idToken");
+  }
+
+  const waasSession = await authenticateWithWaas(idToken);
+
+  if (!waasSession) {
+    throw new Error("No waass session");
+  }
+
+  return {
+    userInfo: {
       idToken,
     },
     walletAddress: waasSession.wallet,

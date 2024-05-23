@@ -1,12 +1,12 @@
 import { TouchableOpacity, View, Text } from "react-native";
-import Clipboard from "@react-native-clipboard/clipboard";
+import * as Clipboard from "expo-clipboard";
 
 import styles from "../styles";
 
 export default function CopyButton({ stringToCopy }: { stringToCopy: string }) {
   return (
     <TouchableOpacity
-      onPress={() => Clipboard.setString(stringToCopy)}
+      onPress={() => Clipboard.setStringAsync(stringToCopy)}
       activeOpacity={0.6}
       style={{ marginTop: 6 }}
     >
