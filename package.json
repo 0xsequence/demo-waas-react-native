@@ -14,8 +14,7 @@
     "react-native": "0.74.1",
     "react-native-keychain": "^8.2.0",
     "react-native-mmkv": "^2.12.2",
-    "react-native-random-values-jsi-helper": "^2.0.1",
-    "react-native-web": "~0.19.6"
+    "react-native-random-values-jsi-helper": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
@@ -26,8 +25,7 @@
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web"
+    "ios": "expo run:ios"
   },
   "version": "1.0.0",
   "private": true,
