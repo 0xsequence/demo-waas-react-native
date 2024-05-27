@@ -1,4 +1,4 @@
-import "react-native-random-values-jsi-helper";
+import "react-native-get-random-values";
 
 import { useEffect, useState } from "react";
 import {

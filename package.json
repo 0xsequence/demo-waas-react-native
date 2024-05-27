@@ -12,9 +12,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.1",
+    "react-native-get-random-values": "~1.11.0",
     "react-native-keychain": "^8.2.0",
-    "react-native-mmkv": "^2.12.2",
-    "react-native-random-values-jsi-helper": "^2.0.1"
+    "react-native-mmkv": "^2.12.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
