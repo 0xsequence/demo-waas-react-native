@@ -34,7 +34,7 @@ export default function EmailAuthView({
         { idToken },
         randomName()
       );
-      console.log(`Wallet address: ${walletAddress}`);
+
       onSuccess(walletAddress.wallet);
     },
   });
