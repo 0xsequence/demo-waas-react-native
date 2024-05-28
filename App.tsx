@@ -1,4 +1,7 @@
 import "react-native-get-random-values";
+import "react-native-url-polyfill/auto";
+import { ReadableStream } from "web-streams-polyfill";
+globalThis.ReadableStream = ReadableStream;
 
 import { useEffect, useState } from "react";
 import {
@@ -16,62 +19,35 @@ import {
   exchangeCodeAsync,
   AccessTokenRequestConfig,
 } from "expo-auth-session";
-import { KeychainSecureStoreBackend } from "@0xsequence/react-native";
-import { SequenceWaaS, networks } from "@0xsequence/waas";
-import { MMKV } from "react-native-mmkv";
+import { networks } from "@0xsequence/waas";
 import * as WebBrowser from "expo-web-browser";
-
-import styles from "./styles";
-
-import CopyButton from "./components/CopyButton";
 import appleAuth, {
   AppleButton,
   appleAuthAndroid,
 } from "@invertase/react-native-apple-authentication";
 
-const projectAccessKey = "AQAAAAAAAGLOEg2Q5NNVBLgUqoa_PVQvcmI";
-const waasConfigKey =
-  "eyJwcm9qZWN0SWQiOjI1Mjk0LCJlbWFpbFJlZ2lvbiI6ImNhLWNlbnRyYWwtMSIsImVtYWlsQ2xpZW50SWQiOiI2dXR0aWJhZmwyZTQxbWU5OTc1NXE3cnJraCIsInJwY1NlcnZlciI6Imh0dHBzOi8vd2Fhcy5zZXF1ZW5jZS5hcHAifQ==";
-const webClientId =
-  "970987756660-35a6tc48hvi8cev9cnknp0iugv9poa23.apps.googleusercontent.com";
-const iosClientId =
-  "970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m.apps.googleusercontent.com";
-const iosRedirectUri =
-  "com.googleusercontent.apps.970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m";
+import {
+  sequenceWaas,
+  initialNetwork,
+  iosRedirectUri,
+  iosClientId,
+  webClientId,
+} from "./waasSetup";
 
-const storage = new MMKV();
+import CopyButton from "./components/CopyButton";
+import EmailAuthView from "./components/EmailAuthView";
 
-const localStorage = {
-  get: async (key: string) => {
-    return storage.getString(key) ?? null;
-  },
-  set: async (key: string, value: string) => {
-    if (value === null) {
-      storage.delete(key);
-      return;
-    }
-    storage.set(key, value);
-  },
-};
+import { randomName } from "./utils/string";
 
-const initialNetwork = "arbitrum-sepolia";
-
-const sequence = new SequenceWaaS(
-  {
-    network: initialNetwork,
-    projectAccessKey: projectAccessKey,
-    waasConfigKey: waasConfigKey,
-  },
-  localStorage,
-  null,
-  new KeychainSecureStoreBackend()
-);
+import styles from "./styles";
 
 const messageToSign = "Hello world";
 
 export default function App() {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [network, setNetwork] = useState<string>(initialNetwork);
+
+  const [isEmailAuthInProgress, setIsEmailAuthInProgress] = useState(false);
 
   const [isSignMessageInProgress, setIsSignMessageInProgress] = useState(false);
   const [sig, setSig] = useState<string | undefined>();
@@ -85,7 +61,7 @@ export default function App() {
 
   const signMessage = async () => {
     setIsSignMessageInProgress(true);
-    const sig = await sequence.signMessage({ message: messageToSign });
+    const sig = await sequenceWaas.signMessage({ message: messageToSign });
     setIsSignMessageInProgress(false);
 
     setSig(sig.data.signature);
@@ -93,7 +69,7 @@ export default function App() {
 
   const sendTxn = async () => {
     setIsSendTxnInProgress(true);
-    const txn = await sequence.sendTransaction({
+    const txn = await sequenceWaas.sendTransaction({
       transactions: [
         {
           to: walletAddress,
@@ -112,6 +88,15 @@ export default function App() {
       <StatusBar
         barStyle={Platform.OS === "ios" ? "light-content" : "dark-content"}
       />
+      {isEmailAuthInProgress && (
+        <EmailAuthView
+          onSuccess={(walletAddress) => {
+            setIsEmailAuthInProgress(false);
+            setWalletAddress(walletAddress);
+          }}
+        />
+      )}
+
       {walletAddress && (
         <ScrollView style={{ paddingVertical: 60, width: "100%" }}>
           <View style={{ paddingBottom: 150 }}>
@@ -211,8 +196,8 @@ export default function App() {
                 setSig(undefined);
                 setTxnHash(undefined);
                 setWalletAddress(null);
-                await sequence.dropSession();
-                sequence.getSessionHash();
+                await sequenceWaas.dropSession();
+                sequenceWaas.getSessionHash();
               }}
             />
           </View>
@@ -220,6 +205,12 @@ export default function App() {
       )}
       {!walletAddress && (
         <View style={{ alignItems: "center", justifyContent: "center" }}>
+          <Button
+            title="Sign in with Email"
+            onPress={() => {
+              setIsEmailAuthInProgress(true);
+            }}
+          />
           <Button
             title="Sign in with Google"
             onPress={async () => {
@@ -264,14 +255,14 @@ export default function App() {
 const isSignedIn = async (
   setWalletAddress: React.Dispatch<React.SetStateAction<string>>
 ) => {
-  const isSignedIn = await sequence.isSignedIn();
+  const isSignedIn = await sequenceWaas.isSignedIn();
 
   if (isSignedIn) {
-    sequence.getAddress().then((address) => {
+    sequenceWaas.getAddress().then((address) => {
       setWalletAddress(address);
     });
   } else {
-    sequence.getSessionHash();
+    sequenceWaas.getSessionHash();
   }
 };
 
@@ -287,7 +278,7 @@ type GoogleUser = {
 };
 
 const signInWithGoogle = async () => {
-  const nonce = await sequence.getSessionHash();
+  const nonce = await sequenceWaas.getSessionHash();
 
   const redirectUri = `${iosRedirectUri}:/oauthredirect`;
 
@@ -357,7 +348,7 @@ const signInWithGoogle = async () => {
 };
 
 const signInWithAppleIOS = async () => {
-  const nonce = await sequence.getSessionHash();
+  const nonce = await sequenceWaas.getSessionHash();
 
   // performs login request
   const appleAuthRequestResponse = await appleAuth.performRequest({
@@ -401,7 +392,7 @@ const signInWithAppleIOS = async () => {
 };
 
 const signInWithAppleAndroid = async () => {
-  const nonce = await sequence.getSessionHash();
+  const nonce = await sequenceWaas.getSessionHash();
 
   // Configure the request
   appleAuthAndroid.configure({
@@ -452,11 +443,11 @@ const authenticateWithWaas = async (
   idToken: string
 ): Promise<{ sessionId: string; wallet: string } | null> => {
   try {
-    const signInResult = await sequence.signIn(
+    const signInResult = await sequenceWaas.signIn(
       {
         idToken: idToken,
       },
-      "iOS"
+      randomName()
     );
 
     return signInResult;
