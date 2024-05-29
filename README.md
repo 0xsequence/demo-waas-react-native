@@ -26,11 +26,13 @@ Follow this guide to get your project access key and other credentials/keys: htt
 ### Common
 
 - ethers (5.7.2)
+- ethersproject/shims
 - expo
-- expo-crypto
-- react-native-get-random-values
+- react-native-quick-crypto
 - react-native-mmkv
 - react-native-keychain
+
+- babel-plugin-module-resolver (as dev dependency)
 
 ### For Apple and Google login
 
