@@ -1,4 +1,8 @@
-import "react-native-get-random-values";
+import { install } from "react-native-quick-crypto";
+install();
+
+import "@ethersproject/shims";
+
 import "react-native-url-polyfill/auto";
 import { ReadableStream } from "web-streams-polyfill";
 globalThis.ReadableStream = ReadableStream;
@@ -197,7 +201,6 @@ export default function App() {
                 setTxnHash(undefined);
                 setWalletAddress(null);
                 await sequenceWaas.dropSession();
-                sequenceWaas.getSessionHash();
               }}
             />
           </View>
@@ -211,6 +214,7 @@ export default function App() {
               setIsEmailAuthInProgress(true);
             }}
           />
+          <View style={{ marginTop: 10 }} />
           <Button
             title="Sign in with Google"
             onPress={async () => {
@@ -261,8 +265,6 @@ const isSignedIn = async (
     sequenceWaas.getAddress().then((address) => {
       setWalletAddress(address);
     });
-  } else {
-    sequenceWaas.getSessionHash();
   }
 };
 
