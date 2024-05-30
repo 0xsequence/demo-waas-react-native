@@ -17,6 +17,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import {
   AuthRequest,
@@ -94,6 +95,7 @@ export default function App() {
       />
       {isEmailAuthInProgress && (
         <EmailAuthView
+          onCancel={() => setIsEmailAuthInProgress(false)}
           onSuccess={(walletAddress) => {
             setIsEmailAuthInProgress(false);
             setWalletAddress(walletAddress);
@@ -207,48 +209,72 @@ export default function App() {
         </ScrollView>
       )}
       {!walletAddress && (
-        <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <Button
-            title="Sign in with Email"
-            onPress={() => {
-              setIsEmailAuthInProgress(true);
-            }}
-          />
-          <View style={{ marginTop: 10 }} />
-          <Button
-            title="Sign in with Google"
-            onPress={async () => {
-              const result = await signInWithGoogle();
-              if (result.walletAddress) {
-                setWalletAddress(result.walletAddress);
-              }
-              console.log("result", result);
-            }}
-          />
-          <View style={{ marginTop: 10 }} />
-          <AppleButton
-            buttonStyle={AppleButton.Style.WHITE}
-            buttonType={AppleButton.Type.SIGN_IN}
+        <>
+          <View
             style={{
-              width: 160, // You must specify a width
-              height: 45, // You must specify a height
+              width: 150,
+              height: 150,
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            onPress={async () => {
-              if (Platform.OS === "ios") {
-                const result = await signInWithAppleIOS();
+          >
+            <Image
+              style={{
+                width: 300,
+                resizeMode: "contain",
+              }}
+              source={require("./assets/sequence-icon.png")}
+            />
+          </View>
+
+          <View style={{ marginBottom: 50 }}>
+            <Text style={{ fontSize: 30, fontWeight: "bold", color: "white" }}>
+              Sequence WaaS Demo
+            </Text>
+          </View>
+          <View style={{ alignItems: "center", justifyContent: "center" }}>
+            <Button
+              title="Sign in with Email"
+              onPress={() => {
+                setIsEmailAuthInProgress(true);
+              }}
+            />
+            <View style={{ marginTop: 10 }} />
+            <Button
+              title="Sign in with Google"
+              onPress={async () => {
+                const result = await signInWithGoogle();
                 if (result.walletAddress) {
                   setWalletAddress(result.walletAddress);
                 }
-              }
-              if (Platform.OS === "android") {
-                const result = await signInWithAppleAndroid();
-                if (result.walletAddress) {
-                  setWalletAddress(result.walletAddress);
+                console.log("result", result);
+              }}
+            />
+            <View style={{ marginTop: 10 }} />
+            <AppleButton
+              buttonStyle={AppleButton.Style.WHITE}
+              buttonType={AppleButton.Type.SIGN_IN}
+              style={{
+                width: 160, // You must specify a width
+                height: 45, // You must specify a height
+              }}
+              onPress={async () => {
+                if (Platform.OS === "ios") {
+                  const result = await signInWithAppleIOS();
+                  if (result.walletAddress) {
+                    setWalletAddress(result.walletAddress);
+                  }
                 }
-              }
-            }}
-          />
-        </View>
+                if (Platform.OS === "android") {
+                  const result = await signInWithAppleAndroid();
+                  if (result.walletAddress) {
+                    setWalletAddress(result.walletAddress);
+                  }
+                }
+              }}
+            />
+          </View>
+        </>
       )}
     </View>
   );

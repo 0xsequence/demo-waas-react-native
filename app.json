@@ -1,13 +1,11 @@
 {
   "expo": {
-    "name": "demo-waas-react-native",
+    "name": "Sequence WaaS Demo",
+    "icon": "./assets/app-icon.png",
     "slug": "demo-waas-react-native",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "sdkVersion": "51.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "platforms": ["ios", "android"],
     "android": {
       "package": "com.horizon.sequencewaasdemo"
     },

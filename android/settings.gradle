@@ -1,4 +1,4 @@
-rootProject.name = 'demo-waas-react-native'
+rootProject.name = 'Sequence WaaS Demo'
 
 dependencyResolutionManagement {
   versionCatalogs {

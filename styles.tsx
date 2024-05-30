@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   emailAuthContainer: {
     position: "absolute",
     zIndex: 100,
-    top: 0,
+    top: -100,
     left: 0,
     right: 0,
     bottom: 0,

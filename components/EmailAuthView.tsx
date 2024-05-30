@@ -7,8 +7,10 @@ import { randomName } from "../utils/string";
 import { sequenceWaas } from "../waasSetup";
 
 export default function EmailAuthView({
+  onCancel,
   onSuccess,
 }: {
+  onCancel: () => void;
   onSuccess: (walletAddress: string) => void;
 }) {
   const [email, setEmail] = useState<string | undefined>();
@@ -45,7 +47,8 @@ export default function EmailAuthView({
         <View
           style={{
             paddingHorizontal: 16,
-            paddingVertical: 10,
+            paddingTop: 10,
+            paddingBottom: 8,
             alignItems: "center",
           }}
         >
@@ -71,14 +74,24 @@ export default function EmailAuthView({
                   marginBottom: 20,
                 }}
               />
-              <Button
-                title="Continue"
-                onPress={() => {
-                  if (isValidEmail(email)) {
-                    initiateEmailAuth(email);
-                  }
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  gap: 70,
+                  marginTop: 8,
                 }}
-              />
+              >
+                <Button title="Cancel" color="red" onPress={() => onCancel()} />
+                <Button
+                  title="Continue"
+                  onPress={() => {
+                    if (isValidEmail(email)) {
+                      initiateEmailAuth(email);
+                    }
+                  }}
+                />
+              </View>
             </>
           )}
 
