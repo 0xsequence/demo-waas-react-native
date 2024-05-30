@@ -1,14 +1,16 @@
 # Sequence WaaS React Native Demo
 
-A demo app for helping developers integrate Sequence WaaS (Embedded wallet) into their React Native apps.
+A demo app to help developers integrate Sequence WaaS (Embedded wallet) into their React Native apps.
 
-## How to run
+---
+
+## How to run the demo
 
 1. Clone the repo
 2. Run `yarn install` to install dependencies
 3. Run `yarn ios` or `yarn android` to run the app on device/simulator
 
-## Details for integrating Sequence WaaS (Embedded wallet) on your React Native app
+---
 
 ## Setting up credentials/keys
 
@@ -45,7 +47,9 @@ Follow this guide to get your project access key and other credentials/keys: htt
 - react-native-url-polyfill
 - web-streams-polyfill
 
-## Setup details
+---
+
+## Integration details
 
 ### 1. Setup shims for ethers and other crypto related packages
 
@@ -83,7 +87,15 @@ export const sequenceWaas = new SequenceWaaS(
 
 (Check `waasSetup.ts` file to see for more details)
 
-3. Once you have an initialized Sequence WaaS instance, you can use it to sign in with email, Google or Apple. Check the `App.tsx` file for more details.
+### 3. Signing in
+
+Once you have an initialized Sequence WaaS instance, you can use it to sign in with email, Google or Apple. Check the `App.tsx` file for more details.
+
+### 4. Wallet operations
+
+Once signed in, you can use the `sequenceWaas` instance to perform wallet operations like sending transactions, signing messages, etc. Check the `App.tsx` file for more details.
+
+---
 
 ## ./ios and ./android folder specific instructions
 
