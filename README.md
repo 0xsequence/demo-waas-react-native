@@ -47,9 +47,9 @@ Follow this guide to get your project access key and other credentials/keys: htt
 
 ## Setup details
 
-1. Setup shims for ethers and other crypto related packages
+### 1. Setup shims for ethers and other crypto related packages
 
-Make sure to do this step as early in your apps lifecycle as possible.
+Firstly, make sure to do this step as early in your apps lifecycle as possible. In this demo these are imported and set at the top in `App.tsx`.
 
 ```ts
 import { install } from "react-native-quick-crypto";
@@ -62,9 +62,11 @@ import { ReadableStream } from "web-streams-polyfill";
 globalThis.ReadableStream = ReadableStream;
 ```
 
-(In this demo these are imported and set at the top in `App.tsx`)
+Secondly, we need to set aliases for the shims, in `babel.config.js` with help of the dev dependency `babel-plugin-module-resolver`, and also we need to make sure to use `pbkdf2` from `react-native-quick-crypto`. This helps us speed up the random value generation. See `babel.config.js` for the code snippet to update the aliases.
 
-2. Initialize Sequence WaaS
+(See https://github.com/ethers-io/ethers.js/issues/2250#issuecomment-1321134111 for more details on react-native-quick-crypto alias setup)
+
+### 2. Initialize Sequence WaaS
 
 ```ts
 export const sequenceWaas = new SequenceWaaS(
