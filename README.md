@@ -45,6 +45,44 @@ Follow this guide to get your project access key and other credentials/keys: htt
 - react-native-url-polyfill
 - web-streams-polyfill
 
+## Setup details
+
+1. Setup shims for ethers and other crypto related packages
+
+Make sure to do this step as early in your apps lifecycle as possible.
+
+```ts
+import { install } from "react-native-quick-crypto";
+install();
+
+import "@ethersproject/shims";
+
+import "react-native-url-polyfill/auto";
+import { ReadableStream } from "web-streams-polyfill";
+globalThis.ReadableStream = ReadableStream;
+```
+
+(In this demo these are imported and set at the top in `App.tsx`)
+
+2. Initialize Sequence WaaS
+
+```ts
+export const sequenceWaas = new SequenceWaaS(
+  {
+    network: initialNetwork,
+    projectAccessKey: projectAccessKey,
+    waasConfigKey: waasConfigKey,
+  },
+  localStorage,
+  null,
+  new KeychainSecureStoreBackend()
+);
+```
+
+(Check `waasSetup.ts` file to see for more details)
+
+3. Once you have an initialized Sequence WaaS instance, you can use it to sign in with email, Google or Apple. Check the `App.tsx` file for more details.
+
 ## ./ios and ./android folder specific instructions
 
 ### iOS
