@@ -1,6 +1,6 @@
 # Sequence WaaS React Native Demo
 
-A demo app to help developers integrate Sequence WaaS (Embedded wallet) into their React Native apps.
+A demo app to help developers integrate Sequence WaaS (Embedded wallet) into their React Native apps. It comes with credentials/keys set up for Google, Apple and Email sign in. Follow the instructions below to set up your own credentials/keys and integrate to your own app.
 
 ---
 
@@ -12,9 +12,19 @@ A demo app to help developers integrate Sequence WaaS (Embedded wallet) into the
 
 ---
 
-## Setting up credentials/keys
+## Setting up with your own credentials/keys
 
 Follow this guide to get your project access key and other credentials/keys: https://docs.sequence.xyz/solutions/builder/embedded-wallet/
+
+### ./ios and ./android folder specific instructions for credentials/keys
+
+#### iOS
+
+Set CFBundleURLSchemes and GIDClientID in the Info.plist file for Google sign in.
+
+#### Android
+
+Set the intent-filter in the AndroidManifest.xml file for Google sign in.
 
 ## Dependencies
 
@@ -25,7 +35,7 @@ Follow this guide to get your project access key and other credentials/keys: htt
 
 ### Other Required dependencies/shims
 
-### Common
+#### Common
 
 - ethers (5.7.2)
 - ethersproject/shims
@@ -36,13 +46,13 @@ Follow this guide to get your project access key and other credentials/keys: htt
 
 - babel-plugin-module-resolver (as dev dependency)
 
-### For Apple and Google login
+#### For Apple and Google login
 
 - expo-web-browser
 - expo-auth-session
 - @invertase/react-native-apple-authentication (use the forked version specified in the package.json)
 
-### For Email login
+#### For Email login
 
 - react-native-url-polyfill
 - web-streams-polyfill
@@ -53,7 +63,7 @@ Follow this guide to get your project access key and other credentials/keys: htt
 
 ### 1. Setup shims for ethers and other crypto related packages
 
-Firstly, make sure to do this step as early in your apps lifecycle as possible. In this demo these are imported and set at the top in `App.tsx`.
+Firstly, make sure to do this step as early in your apps lifecycle as possible. In this demo these are imported and set at the top in [App.tsx](./App.tsx).
 
 ```ts
 import { install } from "react-native-quick-crypto";
@@ -89,20 +99,87 @@ export const sequenceWaas = new SequenceWaaS(
 
 ### 3. Signing in
 
-Once you have an initialized Sequence WaaS instance, you can use it to sign in with email, Google or Apple. Check the `App.tsx` file for more details.
+Once you have an initialized Sequence WaaS instance, you can use it to sign in with email, Google or Apple. See the google code snippet below for an example, and check the [App.tsx](./App.tsx) file for more details.
+
+```ts
+const nonce = await sequenceWaas.getSessionHash();
+
+const redirectUri = `${iosRedirectUri}:/oauthredirect`;
+
+const scopes = ["openid", "profile", "email"];
+const request = new AuthRequest({
+  clientId,
+  scopes,
+  redirectUri,
+  usePKCE: true,
+  extraParams: {
+    nonce: nonce,
+    audience: webClientId,
+    include_granted_scopes: "true",
+  },
+});
+
+const result = await request.promptAsync({
+  authorizationEndpoint: `https://accounts.google.com/o/oauth2/v2/auth`,
+});
+
+if (result.type === "cancel") {
+  return undefined;
+}
+
+const serverAuthCode = result?.params?.code;
+
+const configForTokenExchange: AccessTokenRequestConfig = {
+  code: serverAuthCode,
+  redirectUri,
+  clientId: iosClientId,
+  extraParams: {
+    code_verifier: request?.codeVerifier || "",
+    audience: webClientId,
+  },
+};
+
+const tokenResponse = await exchangeCodeAsync(configForTokenExchange, {
+  tokenEndpoint: "https://oauth2.googleapis.com/token",
+});
+
+const userInfo = await fetchUserInfo(tokenResponse.accessToken);
+
+const idToken = tokenResponse.idToken;
+
+if (!idToken) {
+  throw new Error("No idToken");
+}
+
+try {
+  const signInResult = await sequenceWaas.signIn(
+    {
+      idToken: idToken,
+    },
+    randomName()
+  );
+
+  console.log("signInResult", JSON.stringify(signInResult));
+} catch (e) {
+  console.log("error", JSON.stringify(e));
+}
+```
 
 ### 4. Wallet operations
 
-Once signed in, you can use the `sequenceWaas` instance to perform wallet operations like sending transactions, signing messages, etc. Check the `App.tsx` file for more details.
+Once signed in, you can use the `sequenceWaas` instance to perform wallet operations like sending transactions, signing messages, etc. See the google code snippet below for an example, and check the [App.tsx](./App.tsx) file for more details.
 
----
+```ts
+// Signing a message
+const signature = await sequenceWaas.signMessage({ message: "your message" });
 
-## ./ios and ./android folder specific instructions
-
-### iOS
-
-Set CFBundleURLSchemes and GIDClientID in the Info.plist file for Google sign in.
-
-### Android
-
-Set the intent-filter in the AndroidManifest.xml file for Google sign in.
+// Sending a txn
+const txn = await sequenceWaas.sendTransaction({
+  transactions: [
+    {
+      to: walletAddress,
+      value: 0,
+    },
+  ],
+});
+```
