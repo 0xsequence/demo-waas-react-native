@@ -76,7 +76,7 @@ import { ReadableStream } from "web-streams-polyfill";
 globalThis.ReadableStream = ReadableStream;
 ```
 
-Secondly, we need to set aliases for the shims, in `babel.config.js` with help of the dev dependency `babel-plugin-module-resolver`, and also we need to make sure to use `pbkdf2` from `react-native-quick-crypto`. This helps us speed up the random value generation. See `babel.config.js` for the code snippet to update the aliases.
+Secondly, we need to set aliases for the shims, in `babel.config.js` with help of the dev dependency `babel-plugin-module-resolver`, and also we need to make sure to use `pbkdf2` from `react-native-quick-crypto`. This helps us speed up the random value generation. See [babel.config.js](./babel.config.js) for the code snippet to update the aliases.
 
 (See https://github.com/ethers-io/ethers.js/issues/2250#issuecomment-1321134111 for more details on react-native-quick-crypto alias setup)
 
@@ -95,7 +95,7 @@ export const sequenceWaas = new SequenceWaaS(
 );
 ```
 
-(Check `waasSetup.ts` file to see for more details)
+(Check [waasSetup.ts](./waasSetup.ts) file for more details)
 
 ### 3. Signing in
 
