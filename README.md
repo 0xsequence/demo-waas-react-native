@@ -2,6 +2,10 @@
 
 A demo app to help developers integrate Sequence WaaS (Embedded wallet) into their React Native apps. It comes with credentials/keys set up for Google, Apple and Email sign in. Follow the instructions below to set up your own credentials/keys and integrate to your own app.
 
+### Preview
+
+https://github.com/0xsequence/demo-waas-react-native/assets/11508521/157cab83-1f26-4d8a-b62d-fc9c28d2c50d
+
 ---
 
 ## How to run the demo
