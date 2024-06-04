@@ -34,9 +34,9 @@ import appleAuth, {
 import {
   sequenceWaas,
   initialNetwork,
-  iosRedirectUri,
-  iosClientId,
-  webClientId,
+  iosGoogleRedirectUri,
+  iosGoogleClientId,
+  webGoogleClientId,
 } from "./waasSetup";
 
 import CopyButton from "./components/CopyButton";
@@ -308,22 +308,22 @@ type GoogleUser = {
 const signInWithGoogle = async () => {
   const nonce = await sequenceWaas.getSessionHash();
 
-  const redirectUri = `${iosRedirectUri}:/oauthredirect`;
+  const redirectUri = `${iosGoogleRedirectUri}:/oauthredirect`;
 
   console.log("nonce", nonce);
-  console.log("iosClientId", iosClientId);
-  console.log("webClientId", webClientId);
+  console.log("iosGoogleClientId", iosGoogleClientId);
+  console.log("webGoogleClientId", webGoogleClientId);
   console.log("redirectUri", redirectUri);
 
   const scopes = ["openid", "profile", "email"];
   const request = new AuthRequest({
-    clientId: iosClientId,
+    clientId: iosGoogleClientId,
     scopes,
     redirectUri,
     usePKCE: true,
     extraParams: {
       nonce: nonce,
-      audience: webClientId,
+      audience: webGoogleClientId,
       include_granted_scopes: "true",
     },
   });
@@ -341,10 +341,10 @@ const signInWithGoogle = async () => {
   const configForTokenExchange: AccessTokenRequestConfig = {
     code: serverAuthCode,
     redirectUri,
-    clientId: iosClientId,
+    clientId: iosGoogleClientId,
     extraParams: {
       code_verifier: request?.codeVerifier || "",
-      audience: webClientId,
+      audience: webGoogleClientId,
     },
   };
 

@@ -5,11 +5,11 @@ import { MMKV } from "react-native-mmkv";
 const projectAccessKey = "AQAAAAAAAGLOEg2Q5NNVBLgUqoa_PVQvcmI";
 const waasConfigKey =
   "eyJwcm9qZWN0SWQiOjI1Mjk0LCJlbWFpbFJlZ2lvbiI6ImNhLWNlbnRyYWwtMSIsImVtYWlsQ2xpZW50SWQiOiI2dXR0aWJhZmwyZTQxbWU5OTc1NXE3cnJraCIsInJwY1NlcnZlciI6Imh0dHBzOi8vd2Fhcy5zZXF1ZW5jZS5hcHAifQ==";
-export const webClientId =
+export const webGoogleClientId =
   "970987756660-35a6tc48hvi8cev9cnknp0iugv9poa23.apps.googleusercontent.com";
-export const iosClientId =
+export const iosGoogleClientId =
   "970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m.apps.googleusercontent.com";
-export const iosRedirectUri =
+export const iosGoogleRedirectUri =
   "com.googleusercontent.apps.970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m";
 
 const storage = new MMKV();

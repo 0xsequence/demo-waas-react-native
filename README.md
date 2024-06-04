@@ -108,7 +108,7 @@ Once you have an initialized Sequence WaaS instance, you can use it to sign in w
 ```ts
 const nonce = await sequenceWaas.getSessionHash();
 
-const redirectUri = `${iosRedirectUri}:/oauthredirect`;
+const redirectUri = `${iosGoogleRedirectUri}:/oauthredirect`;
 
 const scopes = ["openid", "profile", "email"];
 const request = new AuthRequest({
@@ -118,7 +118,7 @@ const request = new AuthRequest({
   usePKCE: true,
   extraParams: {
     nonce: nonce,
-    audience: webClientId,
+    audience: webGoogleClientId,
     include_granted_scopes: "true",
   },
 });
@@ -136,10 +136,10 @@ const serverAuthCode = result?.params?.code;
 const configForTokenExchange: AccessTokenRequestConfig = {
   code: serverAuthCode,
   redirectUri,
-  clientId: iosClientId,
+  clientId: iosGoogleClientId,
   extraParams: {
     code_verifier: request?.codeVerifier || "",
-    audience: webClientId,
+    audience: webGoogleClientId,
   },
 };
 
