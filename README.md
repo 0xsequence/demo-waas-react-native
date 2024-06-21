@@ -1,6 +1,6 @@
-# Sequence WaaS React Native Demo
+# Sequence Embedded Wallet React Native Demo
 
-A demo app to help developers integrate Sequence WaaS (Embedded wallet) into their React Native apps. It comes with credentials/keys set up for Google, Apple and Email sign in. Follow the instructions below to set up your own credentials/keys and integrate to your own app.
+A demo app to help developers integrate Sequence Embedded Wallet into their React Native apps. It comes with credentials/keys set up for Google, Apple and Email sign in. Follow the instructions below to set up your own credentials/keys and integrate to your own app.
 
 ### Preview
 
@@ -84,7 +84,7 @@ Secondly, we need to set aliases for the shims, in `babel.config.js` with help o
 
 (See https://github.com/ethers-io/ethers.js/issues/2250#issuecomment-1321134111 for more details on react-native-quick-crypto alias setup)
 
-### 2. Initialize Sequence WaaS
+### 2. Initialize Sequence Embedded Wallet (WaaS)
 
 ```ts
 export const sequenceWaas = new SequenceWaaS(
@@ -103,7 +103,7 @@ export const sequenceWaas = new SequenceWaaS(
 
 ### 3. Signing in
 
-Once you have an initialized Sequence WaaS instance, you can use it to sign in with email, Google or Apple. See the google code snippet below for an example, and check the [App.tsx](./App.tsx) file for more details.
+Once you have an initialized Sequence Embedded Wallet (WaaS) instance, you can use it to sign in with email, Google or Apple. See the google code snippet below for an example, and check the [App.tsx](./App.tsx) file for more details.
 
 ```ts
 const nonce = await sequenceWaas.getSessionHash();
