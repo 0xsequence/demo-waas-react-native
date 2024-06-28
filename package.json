@@ -14,7 +14,7 @@
     "react-native": "0.74.1",
     "react-native-keychain": "^8.2.0",
     "react-native-mmkv": "^2.12.2",
-    "react-native-quick-crypto": "0.7.0-rc.9",
+    "react-native-quick-crypto": "0.7.0",
     "react-native-url-polyfill": "^2.0.0",
     "web-streams-polyfill": "^4.0.0"
   },

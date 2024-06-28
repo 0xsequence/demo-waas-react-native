@@ -1004,7 +1004,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-quick-crypto (0.7.0-rc.9):
+  - react-native-quick-crypto (0.7.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1530,7 +1530,7 @@ SPEC CHECKSUMS:
   React-logger: 7e7403a2b14c97f847d90763af76b84b152b6fce
   React-Mapbuffer: 11029dcd47c5c9e057a4092ab9c2a8d10a496a33
   react-native-mmkv: 8c9a677e64a1ac89b0c6cf240feea528318b3074
-  react-native-quick-crypto: 3aeff10e2cfeedc76f19b8542d824587e137fffa
+  react-native-quick-crypto: ff585b6d4185705f0319a478761919c8c68a7d56
   React-nativeconfig: b0073a590774e8b35192fead188a36d1dca23dec
   React-NativeModulesApple: df46ff3e3de5b842b30b4ca8a6caae6d7c8ab09f
   React-perflogger: 3d31e0d1e8ad891e43a09ac70b7b17a79773003a
