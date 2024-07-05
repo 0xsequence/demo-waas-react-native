@@ -7,63 +7,63 @@
   resolved "https://registry.yarnpkg.com/@0no-co/graphql.web/-/graphql.web-1.0.7.tgz#c7a762c887b3482a79ffa68f63de5e96059a62e4"
   integrity sha512-E3Qku4mTzdrlwVWGPxklDnME5ANrEGetvYw4i2GCRlppWXXE4QD66j7pwb8HelZwS6LnqEChhrSOGCXpbiu6MQ==
 
-"@0xsequence/abi@1.9.27":
-  version "1.9.27"
-  resolved "https://registry.yarnpkg.com/@0xsequence/abi/-/abi-1.9.27.tgz#a6e7ccf4c41c0cde6e49e9800869cccf7de6c6ce"
-  integrity sha512-v80HiQNJ3rTPG3DUI2CuxwL3EjBkDixz0Fv4w6zFEcjF3niZr/baeV4EhZSWDH/NzuZu5OPNfpsKPpMPDgTIEg==
+"@0xsequence/abi@1.9.36":
+  version "1.9.36"
+  resolved "https://registry.yarnpkg.com/@0xsequence/abi/-/abi-1.9.36.tgz#85d71331ec2b8656115e3a4c6694c4706a0218b6"
+  integrity sha512-5RV3Q38Yyf/W+ceWeXhRU+oO1dyivtrGP6NoXvi1qHjvMcv2li+saUiwYPo08+FcxBjGAbF6xBlSTaXkwV/MZw==
 
-"@0xsequence/core@1.9.27":
-  version "1.9.27"
-  resolved "https://registry.yarnpkg.com/@0xsequence/core/-/core-1.9.27.tgz#199181bc567e68fb550f16b364105c6bde70c6e2"
-  integrity sha512-FEe6MfNB86hcSEQ4QkD4Vz+UIR8Zu4yNk2C0xGskcSC264MX2lJVzmDeksG7oLXgkfWlzGz1MUxSTYQDUa0s9Q==
+"@0xsequence/core@1.9.36":
+  version "1.9.36"
+  resolved "https://registry.yarnpkg.com/@0xsequence/core/-/core-1.9.36.tgz#ca319b5a1a0af5defcce9c15f8bbe30e37f4b857"
+  integrity sha512-ke1WEgp90P6Gk5BpyUPyZYE6iV7F+OFZVujRSLV/XCvsPLbgxxqRnLSGz2BdW0fvukWfuDoqh9Zx7DHNbgzxZQ==
   dependencies:
-    "@0xsequence/abi" "1.9.27"
+    "@0xsequence/abi" "1.9.36"
 
-"@0xsequence/indexer@1.9.27":
-  version "1.9.27"
-  resolved "https://registry.yarnpkg.com/@0xsequence/indexer/-/indexer-1.9.27.tgz#8ff00e520f0c01a1e2f802a27f6182bac4054ed0"
-  integrity sha512-YzwJMwsEucDVgoGrjY9AV4R1TvUWcTzqmbEAGHWBOkOpKv/thVRZCbUIBtMwFyGo8FRLJrXHPoQhWs2XKiEoEQ==
+"@0xsequence/indexer@1.9.36":
+  version "1.9.36"
+  resolved "https://registry.yarnpkg.com/@0xsequence/indexer/-/indexer-1.9.36.tgz#3ffe336b13f324bbaa428e83ebfbb64bf52b8054"
+  integrity sha512-BGnm+2jeesX94oiGXE+z9Ibx8AeQ7/vfzQofpmc7ScAIY+vvJleIyocoRBltOBMnYQvb/ngdTukFDQ9llTR+Ew==
 
-"@0xsequence/network@1.9.27":
-  version "1.9.27"
-  resolved "https://registry.yarnpkg.com/@0xsequence/network/-/network-1.9.27.tgz#ba0cdefaa6c33ca86450ba470c23ea4452e59db1"
-  integrity sha512-6lRIvTq90LNq1LoO8MRSdqmf0FsGQKeS29eZ4aRTgtk2/yoMHjOFz+9ZWVb97n1uJ5fHtGLEV/xm9D8U8V//Vg==
+"@0xsequence/network@1.9.36":
+  version "1.9.36"
+  resolved "https://registry.yarnpkg.com/@0xsequence/network/-/network-1.9.36.tgz#322fd0d3f90257960dac9563168c1cbf03f626c0"
+  integrity sha512-+lQtnHWC0qqNdBK87Mx2pwq3Qe4tJINQrB4FJjIMBzF554yr/NF0elmovtUPmpaLujqat6iE8/lE/pHSTCsxMw==
   dependencies:
-    "@0xsequence/core" "1.9.27"
-    "@0xsequence/indexer" "1.9.27"
-    "@0xsequence/relayer" "1.9.27"
-    "@0xsequence/utils" "1.9.27"
+    "@0xsequence/core" "1.9.36"
+    "@0xsequence/indexer" "1.9.36"
+    "@0xsequence/relayer" "1.9.36"
+    "@0xsequence/utils" "1.9.36"
 
-"@0xsequence/react-native@^1.9.27":
-  version "1.9.27"
-  resolved "https://registry.yarnpkg.com/@0xsequence/react-native/-/react-native-1.9.27.tgz#9cc82f5dbba9dbf191f7e3fedcda67b4f8d88a82"
-  integrity sha512-66TsGBbmItS7bCyuoG+3mQc7wC5TF/UlwKbfnLJZqaZ4A2JwHPQ/84y8SHFTpsG8E8dZthzzG/chmniD7kjYig==
+"@0xsequence/react-native@^1.9.36":
+  version "1.9.36"
+  resolved "https://registry.yarnpkg.com/@0xsequence/react-native/-/react-native-1.9.36.tgz#322d73b35d4cb58d3c8c5ac1a6275bf96c7b8c08"
+  integrity sha512-100iaOnB6g/BBqd3PCwDFaMd3Tkno27tQg2Nt+DJ4YMeI9rgVESAytnmVzB9LR+pAq1nOJSvAGkYC7h3EneTPw==
   dependencies:
-    "@0xsequence/waas" "1.9.27"
+    "@0xsequence/waas" "1.9.36"
     react-native-keychain "^8.2.0"
 
-"@0xsequence/relayer@1.9.27":
-  version "1.9.27"
-  resolved "https://registry.yarnpkg.com/@0xsequence/relayer/-/relayer-1.9.27.tgz#9491d0a81b1c8d21987b96faf94489a275cc1298"
-  integrity sha512-4m5PAAa5+y8UUyCFKHPJ4lM+XIYLsQ+aQD/2cw/PFtTjpK0JjyGZTyhzXszFCZ3NuppySVRU/WcYob7vcjH3LA==
+"@0xsequence/relayer@1.9.36":
+  version "1.9.36"
+  resolved "https://registry.yarnpkg.com/@0xsequence/relayer/-/relayer-1.9.36.tgz#2e25720297ebb5f4d167b2a8633799126b4c9e04"
+  integrity sha512-C9vdLfnwO92TI9o8myasL+pdLXctD2Dh1IWVKE43F8pIjnDNurzQAalQSuHzWkGUNunMla3X2E824oD33XUjhQ==
   dependencies:
-    "@0xsequence/abi" "1.9.27"
-    "@0xsequence/core" "1.9.27"
-    "@0xsequence/utils" "1.9.27"
+    "@0xsequence/abi" "1.9.36"
+    "@0xsequence/core" "1.9.36"
+    "@0xsequence/utils" "1.9.36"
 
-"@0xsequence/utils@1.9.27":
-  version "1.9.27"
-  resolved "https://registry.yarnpkg.com/@0xsequence/utils/-/utils-1.9.27.tgz#c4998edf10c190169e2dd7a8e7e03d3148f42d90"
-  integrity sha512-NbFLeHNV+cwq3V+0jtlo6zVj0GoZxykEBV9Hl4tGBuE4EjyZL2GN/vayXHsjfIQG/3w343ae4CojsGBCs/foyg==
+"@0xsequence/utils@1.9.36":
+  version "1.9.36"
+  resolved "https://registry.yarnpkg.com/@0xsequence/utils/-/utils-1.9.36.tgz#90b98c2840f1a8a85e1ad35ffaccd19c5e170a51"
+  integrity sha512-GvuiDGfvWZGxZqKjtuJR9V4vG6GSQF2FpkC0DMPjR06znBi/x+5cWSgUUs8MQER2LOyBuoy3+KmbqYaCe/hnyQ==
   dependencies:
     js-base64 "^3.7.2"
 
-"@0xsequence/waas@1.9.27", "@0xsequence/waas@^1.9.27":
-  version "1.9.27"
-  resolved "https://registry.yarnpkg.com/@0xsequence/waas/-/waas-1.9.27.tgz#120d88b2b04d57b285582b95441f9851e6db9dd3"
-  integrity sha512-D3CtQ2tS3CBSwfwxn8PxxQ6Zzf8k9uwic6LISMAD4rJF2C1l88RMyINrqoq7p5FpmoIIi+MTu313usYmAkExpA==
+"@0xsequence/waas@1.9.36", "@0xsequence/waas@^1.9.36":
+  version "1.9.36"
+  resolved "https://registry.yarnpkg.com/@0xsequence/waas/-/waas-1.9.36.tgz#014e3c9dc6260439cc4d8a3768c21b1e831bc184"
+  integrity sha512-7vKNQQitWBFKCZ38bZRrhGplj/xoWyiZhnBl/N5sTzYh7m0yRfufaw179ucC7JFFbKZt6Qe9ktz2tsypuTGcTA==
   dependencies:
-    "@0xsequence/network" "1.9.27"
+    "@0xsequence/network" "1.9.36"
     "@aws-sdk/client-cognito-identity-provider" "^3.445.0"
     idb "^7.1.1"
     json-canonicalize "^1.0.6"
