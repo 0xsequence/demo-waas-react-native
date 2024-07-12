@@ -3,7 +3,7 @@
     "@0xsequence/react-native": "^1.9.36",
     "@0xsequence/waas": "^1.9.36",
     "@ethersproject/shims": "^5.7.0",
-    "@invertase/react-native-apple-authentication": "https://github.com/tolgahan-arikan/react-native-apple-authentication",
+    "@invertase/react-native-apple-authentication": "https://github.com/0xsequence/react-native-apple-auth",
     "ethers": "5.7.2",
     "expo": "~51.0.20",
     "expo-auth-session": "~5.5.2",

@@ -1982,9 +1982,9 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@invertase/react-native-apple-authentication@https://github.com/tolgahan-arikan/react-native-apple-authentication":
+"@invertase/react-native-apple-authentication@https://github.com/0xsequence/react-native-apple-auth":
   version "2.3.0"
-  resolved "https://github.com/tolgahan-arikan/react-native-apple-authentication#51a81fa8b43dba37b7ac3eb9ab4fcd350a66dd7c"
+  resolved "https://github.com/0xsequence/react-native-apple-auth#51a81fa8b43dba37b7ac3eb9ab4fcd350a66dd7c"
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
