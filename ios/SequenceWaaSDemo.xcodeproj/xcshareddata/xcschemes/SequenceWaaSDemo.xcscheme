@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "demowaasreactnative.app"
-               BlueprintName = "demowaasreactnative"
-               ReferencedContainer = "container:demowaasreactnative.xcodeproj">
+               BuildableName = "SequenceWaaSDemo.app"
+               BlueprintName = "SequenceWaaSDemo"
+               ReferencedContainer = "container:SequenceWaaSDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "demowaasreactnativeTests.xctest"
-               BlueprintName = "demowaasreactnativeTests"
-               ReferencedContainer = "container:demowaasreactnative.xcodeproj">
+               BuildableName = "SequenceWaaSDemoTests.xctest"
+               BlueprintName = "SequenceWaaSDemoTests"
+               ReferencedContainer = "container:SequenceWaaSDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "demowaasreactnative.app"
-            BlueprintName = "demowaasreactnative"
-            ReferencedContainer = "container:demowaasreactnative.xcodeproj">
+            BuildableName = "SequenceWaaSDemo.app"
+            BlueprintName = "SequenceWaaSDemo"
+            ReferencedContainer = "container:SequenceWaaSDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "demowaasreactnative.app"
-            BlueprintName = "demowaasreactnative"
-            ReferencedContainer = "container:demowaasreactnative.xcodeproj">
+            BuildableName = "SequenceWaaSDemo.app"
+            BlueprintName = "SequenceWaaSDemo"
+            ReferencedContainer = "container:SequenceWaaSDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

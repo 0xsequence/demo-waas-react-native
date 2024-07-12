@@ -26,11 +26,11 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="com.horizon.sequencewaasdemo"/>
       </intent-filter>
-      <intent-filter>
+      <intent-filter data-generated="true">
         <action android:name="android.intent.action.VIEW"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-        <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="com.googleusercontent.apps.970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>

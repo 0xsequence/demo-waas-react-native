@@ -20,15 +20,15 @@ https://github.com/0xsequence/demo-waas-react-native/assets/11508521/157cab83-1f
 
 Follow this guide to get your project access key and other credentials/keys: https://docs.sequence.xyz/solutions/builder/embedded-wallet/
 
-### ./ios and ./android folder specific instructions for credentials/keys
+### Setting up with your own credentials/keys using app.json or app.config.js
 
 #### iOS
 
-Set CFBundleURLSchemes and GIDClientID in the Info.plist file for Google sign in.
+Set GIDClientID in ios > infoPlist in the app.json file.
 
 #### Android
 
-Set the intent-filter in the AndroidManifest.xml file for Google sign in.
+Set the intent-filter in android > intentFilters in the app.json file.
 
 ## Dependencies
 
