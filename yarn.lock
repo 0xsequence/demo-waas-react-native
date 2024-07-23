@@ -7,63 +7,64 @@
   resolved "https://registry.yarnpkg.com/@0no-co/graphql.web/-/graphql.web-1.0.7.tgz#c7a762c887b3482a79ffa68f63de5e96059a62e4"
   integrity sha512-E3Qku4mTzdrlwVWGPxklDnME5ANrEGetvYw4i2GCRlppWXXE4QD66j7pwb8HelZwS6LnqEChhrSOGCXpbiu6MQ==
 
-"@0xsequence/abi@1.9.36":
-  version "1.9.36"
-  resolved "https://registry.yarnpkg.com/@0xsequence/abi/-/abi-1.9.36.tgz#85d71331ec2b8656115e3a4c6694c4706a0218b6"
-  integrity sha512-5RV3Q38Yyf/W+ceWeXhRU+oO1dyivtrGP6NoXvi1qHjvMcv2li+saUiwYPo08+FcxBjGAbF6xBlSTaXkwV/MZw==
+"@0xsequence/abi@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@0xsequence/abi/-/abi-1.10.3.tgz#4f28a5ff456b79117100829eacf2d89d10ab0146"
+  integrity sha512-ZSHpcB46BaGpK6AXHFtE6BhslilIReWhX6ySmjI9vsBfvdesoq0nTtC0cbq3dmgBY42iDTEoYxN2eE2ToQJaFw==
 
-"@0xsequence/core@1.9.36":
-  version "1.9.36"
-  resolved "https://registry.yarnpkg.com/@0xsequence/core/-/core-1.9.36.tgz#ca319b5a1a0af5defcce9c15f8bbe30e37f4b857"
-  integrity sha512-ke1WEgp90P6Gk5BpyUPyZYE6iV7F+OFZVujRSLV/XCvsPLbgxxqRnLSGz2BdW0fvukWfuDoqh9Zx7DHNbgzxZQ==
+"@0xsequence/core@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@0xsequence/core/-/core-1.10.3.tgz#b0615ea6f7dcf9d19a9b9f74d2677d1f9a4b9e18"
+  integrity sha512-6YXAw7AEcavZhxWiddZvyqmvEzgEnHus4QE4CxoMK0b2GMHCsFFumeJ3Lbv1d7o22CdUszInnstxVIIKiIkfbA==
   dependencies:
-    "@0xsequence/abi" "1.9.36"
+    "@0xsequence/abi" "1.10.3"
 
-"@0xsequence/indexer@1.9.36":
-  version "1.9.36"
-  resolved "https://registry.yarnpkg.com/@0xsequence/indexer/-/indexer-1.9.36.tgz#3ffe336b13f324bbaa428e83ebfbb64bf52b8054"
-  integrity sha512-BGnm+2jeesX94oiGXE+z9Ibx8AeQ7/vfzQofpmc7ScAIY+vvJleIyocoRBltOBMnYQvb/ngdTukFDQ9llTR+Ew==
+"@0xsequence/indexer@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@0xsequence/indexer/-/indexer-1.10.3.tgz#3e8a150b7a1bc6299d62121e5eadc6a99844f327"
+  integrity sha512-N86tUs6AVUvg4cS5uMVCGe1fqcAbgrl4c0niuQFD4v7g1R3O8Z21Hb+R8WsOmH6wHtkzQlAKMfqHPPao48qq6A==
 
-"@0xsequence/network@1.9.36":
-  version "1.9.36"
-  resolved "https://registry.yarnpkg.com/@0xsequence/network/-/network-1.9.36.tgz#322fd0d3f90257960dac9563168c1cbf03f626c0"
-  integrity sha512-+lQtnHWC0qqNdBK87Mx2pwq3Qe4tJINQrB4FJjIMBzF554yr/NF0elmovtUPmpaLujqat6iE8/lE/pHSTCsxMw==
+"@0xsequence/network@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@0xsequence/network/-/network-1.10.3.tgz#97ed9b59b71dfa15d3a1d500f6f4a13e1805ca08"
+  integrity sha512-kHKZY884uoys71PwAkrw//q4u+V2WLnjvh5eqlluPlcH/2FawW8/jo92JTjVKYKvd+a+dFdT2NEvAMA6rLzsew==
   dependencies:
-    "@0xsequence/core" "1.9.36"
-    "@0xsequence/indexer" "1.9.36"
-    "@0xsequence/relayer" "1.9.36"
-    "@0xsequence/utils" "1.9.36"
+    "@0xsequence/core" "1.10.3"
+    "@0xsequence/indexer" "1.10.3"
+    "@0xsequence/relayer" "1.10.3"
+    "@0xsequence/utils" "1.10.3"
 
-"@0xsequence/react-native@^1.9.36":
-  version "1.9.36"
-  resolved "https://registry.yarnpkg.com/@0xsequence/react-native/-/react-native-1.9.36.tgz#322d73b35d4cb58d3c8c5ac1a6275bf96c7b8c08"
-  integrity sha512-100iaOnB6g/BBqd3PCwDFaMd3Tkno27tQg2Nt+DJ4YMeI9rgVESAytnmVzB9LR+pAq1nOJSvAGkYC7h3EneTPw==
+"@0xsequence/react-native@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@0xsequence/react-native/-/react-native-1.10.3.tgz#0bbbc7a0d1501be3417c565bc1e10a4dad025311"
+  integrity sha512-FVxzf8oCgNIzMecRZVZysHeITlt/Vdggu+DnnfRAf2s4+xGgtB/zwBZgjdigykiBRbwvNpAelgue2cj2xjo92A==
   dependencies:
-    "@0xsequence/waas" "1.9.36"
+    "@0xsequence/waas" "1.10.3"
     react-native-keychain "^8.2.0"
 
-"@0xsequence/relayer@1.9.36":
-  version "1.9.36"
-  resolved "https://registry.yarnpkg.com/@0xsequence/relayer/-/relayer-1.9.36.tgz#2e25720297ebb5f4d167b2a8633799126b4c9e04"
-  integrity sha512-C9vdLfnwO92TI9o8myasL+pdLXctD2Dh1IWVKE43F8pIjnDNurzQAalQSuHzWkGUNunMla3X2E824oD33XUjhQ==
+"@0xsequence/relayer@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@0xsequence/relayer/-/relayer-1.10.3.tgz#0b4a13a810ef16ac2ceaf00ce11b440362ec5e3b"
+  integrity sha512-X9a5ib5YZZAT83OOXvqNpfLtdfNbBSXo/lU6qRnK8XLnkbAGRbq6A5pqCkel5mNU/FFmkjWlh6pllUs97Q8rcw==
   dependencies:
-    "@0xsequence/abi" "1.9.36"
-    "@0xsequence/core" "1.9.36"
-    "@0xsequence/utils" "1.9.36"
+    "@0xsequence/abi" "1.10.3"
+    "@0xsequence/core" "1.10.3"
+    "@0xsequence/utils" "1.10.3"
 
-"@0xsequence/utils@1.9.36":
-  version "1.9.36"
-  resolved "https://registry.yarnpkg.com/@0xsequence/utils/-/utils-1.9.36.tgz#90b98c2840f1a8a85e1ad35ffaccd19c5e170a51"
-  integrity sha512-GvuiDGfvWZGxZqKjtuJR9V4vG6GSQF2FpkC0DMPjR06znBi/x+5cWSgUUs8MQER2LOyBuoy3+KmbqYaCe/hnyQ==
+"@0xsequence/utils@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@0xsequence/utils/-/utils-1.10.3.tgz#429b9355b68e3fe82f760f065988200e5b5b5509"
+  integrity sha512-4YFM6a3HuECwaBIeG1/mmZvA+aMqD5NmRw8yXJb/j91m3U7mTIC7oF6HSYBORR6neJZSKDCNE5mmfBA3aBAI7g==
   dependencies:
     js-base64 "^3.7.2"
 
-"@0xsequence/waas@1.9.36", "@0xsequence/waas@^1.9.36":
-  version "1.9.36"
-  resolved "https://registry.yarnpkg.com/@0xsequence/waas/-/waas-1.9.36.tgz#014e3c9dc6260439cc4d8a3768c21b1e831bc184"
-  integrity sha512-7vKNQQitWBFKCZ38bZRrhGplj/xoWyiZhnBl/N5sTzYh7m0yRfufaw179ucC7JFFbKZt6Qe9ktz2tsypuTGcTA==
+"@0xsequence/waas@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@0xsequence/waas/-/waas-1.10.3.tgz#29ae1b25832e8681a42fb611b39435116913e396"
+  integrity sha512-nIrhwDj7VIJevJIZTt4SqwtuZt/6KP7cMV5XGFiyd5Cx9lMNbEMMcR8q7kF6tLIqX5tCJKEOg1/9F4s13flF7g==
   dependencies:
-    "@0xsequence/network" "1.9.36"
+    "@0xsequence/core" "1.10.3"
+    "@0xsequence/network" "1.10.3"
     "@aws-sdk/client-cognito-identity-provider" "^3.445.0"
     idb "^7.1.1"
     json-canonicalize "^1.0.6"
@@ -1847,7 +1848,31 @@
     json5 "^2.2.2"
     write-file-atomic "^2.3.0"
 
-"@expo/metro-config@0.18.8", "@expo/metro-config@~0.18.6":
+"@expo/metro-config@0.18.9":
+  version "0.18.9"
+  resolved "https://registry.yarnpkg.com/@expo/metro-config/-/metro-config-0.18.9.tgz#5494e3e51409474fd1521389673c3f99511b50c4"
+  integrity sha512-kcqT/wuO43zxuFeR5AR/pMuq/O9qtIyuTI1wYvBY97blHAYU/wfPJKW3xFL14fDkPqQOc87hEEhjlJiXoebvcw==
+  dependencies:
+    "@babel/core" "^7.20.0"
+    "@babel/generator" "^7.20.5"
+    "@babel/parser" "^7.20.0"
+    "@babel/types" "^7.20.0"
+    "@expo/config" "~9.0.0-beta.0"
+    "@expo/env" "~0.3.0"
+    "@expo/json-file" "~8.3.0"
+    "@expo/spawn-async" "^1.7.2"
+    chalk "^4.1.0"
+    debug "^4.3.2"
+    find-yarn-workspace-root "~2.0.0"
+    fs-extra "^9.1.0"
+    getenv "^1.0.0"
+    glob "^7.2.3"
+    jsc-safe-url "^0.2.4"
+    lightningcss "~1.19.0"
+    postcss "~8.4.32"
+    resolve-from "^5.0.0"
+
+"@expo/metro-config@~0.18.6":
   version "0.18.8"
   resolved "https://registry.yarnpkg.com/@expo/metro-config/-/metro-config-0.18.8.tgz#2902bfdb864876da3cf5b1822a554bbb011e4a77"
   integrity sha512-YGpTlVc1/6EPzPbt0LZt92Bwrpjngulup6uHSTRbwn/heMPfFaVv1Y4VE3GAUkx7/Qwu+dTVIV0Kys4pLOAIiw==
@@ -1982,9 +2007,10 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@invertase/react-native-apple-authentication@https://github.com/0xsequence/react-native-apple-auth":
+"@invertase/react-native-apple-authentication@^2.3.0":
   version "2.3.0"
-  resolved "https://github.com/0xsequence/react-native-apple-auth#51a81fa8b43dba37b7ac3eb9ab4fcd350a66dd7c"
+  resolved "https://registry.yarnpkg.com/@invertase/react-native-apple-authentication/-/react-native-apple-authentication-2.3.0.tgz#b131b2033bfce06ca788f0b0886b51eb6effea0e"
+  integrity sha512-D3NNPv98EmkkCJyQEZhRn1zPC5EH+8LKBS+ddFsDyc3rVGWE7Ct0ffpxZ5T60w6wamIPjojIMSfEPUxbQ28+og==
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
@@ -4340,10 +4366,10 @@ expo-file-system@~17.0.1:
   resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-17.0.1.tgz#b9f8af8c1c06ec71d96fd7a0d2567fa9e1c88f15"
   integrity sha512-dYpnZJqTGj6HCYJyXAgpFkQWsiCH3HY1ek2cFZVHFoEc5tLz9gmdEgTF6nFHurvmvfmXqxi7a5CXyVm0aFYJBw==
 
-expo-font@~12.0.8:
-  version "12.0.8"
-  resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-12.0.8.tgz#23b769063ba72484c767a4fdb0ff3a26d23645d2"
-  integrity sha512-xK9kOEyD/vnREicM5yS2uVwzB83weu+UE6QwJRH2dhoQcdJiWGGKOj+blJ8GrtU+BqtyNijyWcwfBbYOJnf8eQ==
+expo-font@~12.0.9:
+  version "12.0.9"
+  resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-12.0.9.tgz#096860a6b8b5dd54152262eafd318593ec2db48c"
+  integrity sha512-seTCyf0tbgkAnp3ZI9ZfK9QVtURQUgFnuj+GuJ5TSnN0XsOtVe1s2RxTvmMgkfuvfkzcjJ69gyRpsZS1cC8hjw==
   dependencies:
     fontfaceobserver "^2.1.0"
 
@@ -4383,21 +4409,21 @@ expo-web-browser@~13.0.0, expo-web-browser@~13.0.3:
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-13.0.3.tgz#dceb05dbc187b498ca937b02adf385b0232a4e92"
   integrity sha512-HXb7y82ApVJtqk8tManyudtTrCtx8xcUnVzmJECeHCB0SsWSQ+penVLZxJkcyATWoJOsFMnfVSVdrTcpKKGszQ==
 
-expo@~51.0.20:
-  version "51.0.20"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-51.0.20.tgz#e34ce895875e29bb46a818ff5be7178b4fce2bfb"
-  integrity sha512-EmNZel6j7pU4YF1QcIcgpVdYsA1lASQcEw9PPSevjreNT6nlge2CNHB6mAphAKGz5PdgcWYBn/v4qQj1/FJuZQ==
+expo@~51.0.22:
+  version "51.0.22"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-51.0.22.tgz#93787d76998757e3d37587edc132c2c42d378ae9"
+  integrity sha512-AtdqmtKNRC+cRBTsYGfwQFMLWAWWC531V2V+bAO3S9wVSTP2eLh34V06/IsBIjCCAJQPaaeR05XcST8U3apXFw==
   dependencies:
     "@babel/runtime" "^7.20.0"
     "@expo/cli" "0.18.25"
     "@expo/config" "9.0.3"
     "@expo/config-plugins" "8.0.8"
-    "@expo/metro-config" "0.18.8"
+    "@expo/metro-config" "0.18.9"
     "@expo/vector-icons" "^14.0.0"
     babel-preset-expo "~11.0.12"
     expo-asset "~10.0.10"
     expo-file-system "~17.0.1"
-    expo-font "~12.0.8"
+    expo-font "~12.0.9"
     expo-keep-awake "~13.0.2"
     expo-modules-autolinking "1.11.1"
     expo-modules-core "1.12.19"
@@ -6752,10 +6778,10 @@ react-native-quick-base64@^2.0.5:
   dependencies:
     base64-js "^1.5.1"
 
-react-native-quick-crypto@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/react-native-quick-crypto/-/react-native-quick-crypto-0.7.0.tgz#36011efa246c3b60acf91d26b92c95cdf566a46e"
-  integrity sha512-zM/lfBgg1bXdQLigsOlfflVt2erRRps/IFLuJ+HKwp5Nh2E3+mMRMTK+UOHMoNYJiE5fpcb4GSh23+YK9KHkAg==
+react-native-quick-crypto@0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-quick-crypto/-/react-native-quick-crypto-0.7.1.tgz#f767656cd09441542f3654873574788c6a97e495"
+  integrity sha512-1F8D8oYdociccdiU5hciSJ+rvehdmaJRV2hIv/LgEwBthwkVdD7pSf6kFKwoY9Y2Ly6f7tfBCjYg4/uQRge8Jg==
   dependencies:
     "@craftzdog/react-native-buffer" "^6.0.5"
     events "^3.3.0"

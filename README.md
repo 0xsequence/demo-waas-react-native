@@ -106,8 +106,6 @@ export const sequenceWaas = new SequenceWaaS(
 Once you have an initialized Sequence Embedded Wallet (WaaS) instance, you can use it to sign in with email, Google or Apple. See the google code snippet below for an example, and check the [App.tsx](./App.tsx) file for more details.
 
 ```ts
-const nonce = await sequenceWaas.getSessionHash();
-
 const redirectUri = `${iosGoogleRedirectUri}:/oauthredirect`;
 
 const scopes = ["openid", "profile", "email"];
@@ -117,7 +115,6 @@ const request = new AuthRequest({
   redirectUri,
   usePKCE: true,
   extraParams: {
-    nonce: nonce,
     audience: webGoogleClientId,
     include_granted_scopes: "true",
   },

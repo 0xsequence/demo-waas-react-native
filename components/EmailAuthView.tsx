@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { View, Text, TextInput, Button, ActivityIndicator } from "react-native";
 
 import styles from "../styles";
+
 import { useEmailAuth } from "../hooks/useEmailAuth";
+
 import { randomName } from "../utils/string";
-import { sequenceWaas } from "../waasSetup";
 
 export default function EmailAuthView({
   onCancel,
@@ -29,15 +30,13 @@ export default function EmailAuthView({
     inProgress: emailAuthInProgress,
     loading: emailAuthLoading,
     initiateAuth: initiateEmailAuth,
-    sendChallengeAnswer,
+    sendChallengeAnswer: sendChallengeAnswer,
+    cancel: cancelEmailAuth,
   } = useEmailAuth({
-    onSuccess: async (idToken) => {
-      const walletAddress = await sequenceWaas.signIn(
-        { idToken },
-        randomName()
-      );
-
-      onSuccess(walletAddress.wallet);
+    sessionName: randomName(),
+    onSuccess: async ({ wallet }) => {
+      console.log(`Wallet address: ${wallet}`);
+      onSuccess(wallet);
     },
   });
 

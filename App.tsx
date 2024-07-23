@@ -64,6 +64,13 @@ export default function App() {
     isSignedIn(setWalletAddress);
   }, []);
 
+  sequenceWaas.onEmailConflict(async (info, forceCreate) => {
+    console.log("onEmailConflict", info);
+
+    // This can be handled by the app by showing a dialog to the user, for demo purposes we will just force create a new session
+    forceCreate();
+  });
+
   const signMessage = async () => {
     setIsSignMessageInProgress(true);
     const sig = await sequenceWaas.signMessage({ message: messageToSign });
@@ -247,7 +254,6 @@ export default function App() {
                 if (result.walletAddress) {
                   setWalletAddress(result.walletAddress);
                 }
-                console.log("result", result);
               }}
             />
             <View style={{ marginTop: 10 }} />
@@ -267,6 +273,7 @@ export default function App() {
                 }
                 if (Platform.OS === "android") {
                   const result = await signInWithAppleAndroid();
+
                   if (result.walletAddress) {
                     setWalletAddress(result.walletAddress);
                   }
@@ -306,14 +313,7 @@ type GoogleUser = {
 };
 
 const signInWithGoogle = async () => {
-  const nonce = await sequenceWaas.getSessionHash();
-
   const redirectUri = `${iosGoogleRedirectUri}:/oauthredirect`;
-
-  console.log("nonce", nonce);
-  console.log("iosGoogleClientId", iosGoogleClientId);
-  console.log("webGoogleClientId", webGoogleClientId);
-  console.log("redirectUri", redirectUri);
 
   const scopes = ["openid", "profile", "email"];
   const request = new AuthRequest({
@@ -322,7 +322,6 @@ const signInWithGoogle = async () => {
     redirectUri,
     usePKCE: true,
     extraParams: {
-      nonce: nonce,
       audience: webGoogleClientId,
       include_granted_scopes: "true",
     },
@@ -376,12 +375,8 @@ const signInWithGoogle = async () => {
 };
 
 const signInWithAppleIOS = async () => {
-  const nonce = await sequenceWaas.getSessionHash();
-
   // performs login request
   const appleAuthRequestResponse = await appleAuth.performRequest({
-    nonce,
-    hashNonceAutomatically: false,
     requestedOperation: appleAuth.Operation.LOGIN,
     // Note: it appears putting FULL_NAME first is important, see issue #293
     requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
@@ -420,8 +415,6 @@ const signInWithAppleIOS = async () => {
 };
 
 const signInWithAppleAndroid = async () => {
-  const nonce = await sequenceWaas.getSessionHash();
-
   // Configure the request
   appleAuthAndroid.configure({
     // The Service ID you registered with Apple
@@ -436,18 +429,12 @@ const signInWithAppleAndroid = async () => {
 
     // The amount of user information requested from Apple.
     scope: appleAuthAndroid.Scope.ALL,
-
-    nonce,
-
-    hashNonceAutomatically: false,
   });
 
   // Open the browser window for user sign in
   const response = await appleAuthAndroid.signIn();
 
   const idToken = response.id_token;
-
-  console.log("idToken", idToken);
 
   if (!idToken) {
     throw new Error("No idToken");
@@ -456,7 +443,7 @@ const signInWithAppleAndroid = async () => {
   const waasSession = await authenticateWithWaas(idToken);
 
   if (!waasSession) {
-    throw new Error("No waass session");
+    throw new Error("No waas session");
   }
 
   return {
@@ -473,14 +460,14 @@ const authenticateWithWaas = async (
   try {
     const signInResult = await sequenceWaas.signIn(
       {
-        idToken: idToken,
+        idToken,
       },
       randomName()
     );
 
     return signInResult;
   } catch (e) {
-    console.log("error", JSON.stringify(e));
+    console.log("error in authenticateWithWaas", JSON.stringify(e));
   }
 
   return null;

@@ -2,9 +2,10 @@ import { SequenceWaaS } from "@0xsequence/waas";
 import { KeychainSecureStoreBackend } from "@0xsequence/react-native";
 import { MMKV } from "react-native-mmkv";
 
-const projectAccessKey = "AQAAAAAAAGLOEg2Q5NNVBLgUqoa_PVQvcmI";
+const projectAccessKey = "AQAAAAAAAI9WEA9-IwH6yjyN0Ts0jEK-8Qk";
 const waasConfigKey =
-  "eyJwcm9qZWN0SWQiOjI1Mjk0LCJlbWFpbFJlZ2lvbiI6ImNhLWNlbnRyYWwtMSIsImVtYWlsQ2xpZW50SWQiOiI2dXR0aWJhZmwyZTQxbWU5OTc1NXE3cnJraCIsInJwY1NlcnZlciI6Imh0dHBzOi8vd2Fhcy5zZXF1ZW5jZS5hcHAifQ==";
+  "eyJwcm9qZWN0SWQiOjM2Njk0LCJycGNTZXJ2ZXIiOiJodHRwczovL3dhYXMuc2VxdWVuY2UuYXBwIn0=";
+
 export const webGoogleClientId =
   "970987756660-35a6tc48hvi8cev9cnknp0iugv9poa23.apps.googleusercontent.com";
 export const iosGoogleClientId =
