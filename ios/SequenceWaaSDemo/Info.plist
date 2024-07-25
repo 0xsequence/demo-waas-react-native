@@ -27,14 +27,12 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.horizon.sequence-waas-demo</string>
+          <string>com.googleusercontent.apps.970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m</string>
         </array>
       </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
-    <key>GIDClientID</key>
-    <string>277467576806-f8g9k1vu110ssa8lgt4fd2v1gjmc21as.apps.googleusercontent.com</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSAppTransportSecurity</key>

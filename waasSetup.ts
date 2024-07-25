@@ -10,8 +10,6 @@ export const webGoogleClientId =
   "970987756660-35a6tc48hvi8cev9cnknp0iugv9poa23.apps.googleusercontent.com";
 export const iosGoogleClientId =
   "970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m.apps.googleusercontent.com";
-export const iosGoogleRedirectUri =
-  "com.googleusercontent.apps.970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m";
 
 const storage = new MMKV();
 

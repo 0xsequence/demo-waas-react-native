@@ -19,11 +19,7 @@ import {
   View,
   Image,
 } from "react-native";
-import {
-  AuthRequest,
-  exchangeCodeAsync,
-  AccessTokenRequestConfig,
-} from "expo-auth-session";
+
 import { networks } from "@0xsequence/waas";
 import * as WebBrowser from "expo-web-browser";
 import appleAuth, {
@@ -34,7 +30,6 @@ import appleAuth, {
 import {
   sequenceWaas,
   initialNetwork,
-  iosGoogleRedirectUri,
   iosGoogleClientId,
   webGoogleClientId,
 } from "./waasSetup";
@@ -45,6 +40,12 @@ import EmailAuthView from "./components/EmailAuthView";
 import { randomName } from "./utils/string";
 
 import styles from "./styles";
+import {
+  GoogleSignin,
+  isErrorWithCode,
+  statusCodes,
+  User,
+} from "@react-native-google-signin/google-signin";
 
 const messageToSign = "Hello world";
 
@@ -313,65 +314,56 @@ type GoogleUser = {
 };
 
 const signInWithGoogle = async () => {
-  const redirectUri = `${iosGoogleRedirectUri}:/oauthredirect`;
-
-  const scopes = ["openid", "profile", "email"];
-  const request = new AuthRequest({
-    clientId: iosGoogleClientId,
-    scopes,
-    redirectUri,
-    usePKCE: true,
-    extraParams: {
-      audience: webGoogleClientId,
-      include_granted_scopes: "true",
-    },
+  GoogleSignin.configure({
+    webClientId: webGoogleClientId,
+    iosClientId: iosGoogleClientId,
+    forceCodeForRefreshToken: true,
   });
 
-  const result = await request.promptAsync({
-    authorizationEndpoint: `https://accounts.google.com/o/oauth2/v2/auth`,
-  });
+  let user: User | undefined;
 
-  if (result.type === "cancel") {
-    return undefined;
+  try {
+    await GoogleSignin.hasPlayServices();
+    user = await GoogleSignin.signIn();
+    console.log("Google Sign-in user", JSON.stringify(user, null, 2));
+  } catch (error) {
+    if (isErrorWithCode(error)) {
+      switch (error.code) {
+        case statusCodes.SIGN_IN_CANCELLED:
+          // user cancelled the login flow
+          console.log("Google Sign-in", "User cancelled sign in");
+          break;
+        case statusCodes.IN_PROGRESS:
+          // operation (eg. sign in) already in progress
+          console.log("Google Sign-in", "Operation already in progress");
+          break;
+        case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+          // play services not available or outdated
+          console.log("Google Sign-in", "Play services not available");
+          break;
+        default:
+          console.log("Google Sign-in", "Unknown error", JSON.stringify(error));
+        // some other error happened
+      }
+    } else {
+      console.log("Google Sign-in", "Unknown error", error);
+      // an error that's not related to google sign in occurred
+    }
+    throw error;
   }
 
-  const serverAuthCode = result?.params?.code;
+  if (user) {
+    const waasSession = await authenticateWithWaas(user.idToken);
 
-  const configForTokenExchange: AccessTokenRequestConfig = {
-    code: serverAuthCode,
-    redirectUri,
-    clientId: iosGoogleClientId,
-    extraParams: {
-      code_verifier: request?.codeVerifier || "",
-      audience: webGoogleClientId,
-    },
-  };
+    if (!waasSession) {
+      throw new Error("No waas session");
+    }
 
-  const tokenResponse = await exchangeCodeAsync(configForTokenExchange, {
-    tokenEndpoint: "https://oauth2.googleapis.com/token",
-  });
-
-  const userInfo = await fetchUserInfo(tokenResponse.accessToken);
-
-  const idToken = tokenResponse.idToken;
-
-  if (!idToken) {
-    throw new Error("No idToken");
+    return {
+      userInfo: user.user,
+      walletAddress: waasSession.wallet,
+    };
   }
-
-  const waasSession = await authenticateWithWaas(idToken);
-
-  if (!waasSession) {
-    throw new Error("No waass session");
-  }
-
-  return {
-    userInfo: {
-      user: userInfo,
-      idToken,
-    },
-    walletAddress: waasSession.wallet,
-  };
 };
 
 const signInWithAppleIOS = async () => {
@@ -401,7 +393,7 @@ const signInWithAppleIOS = async () => {
     const waasSession = await authenticateWithWaas(idToken);
 
     if (!waasSession) {
-      throw new Error("No waass session");
+      throw new Error("No waas session");
     }
 
     return {

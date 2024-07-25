@@ -6,6 +6,14 @@
     "version": "1.0.3",
     "sdkVersion": "51.0.0",
     "platforms": ["ios", "android"],
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m"
+        }
+      ]
+    ],
     "android": {
       "package": "com.horizon.sequencewaasdemo",
       "intentFilters": [
@@ -24,7 +32,13 @@
       "bundleIdentifier": "com.horizon.sequence-waas-demo",
       "usesAppleSignIn": true,
       "infoPlist": {
-        "GIDClientID": "277467576806-f8g9k1vu110ssa8lgt4fd2v1gjmc21as.apps.googleusercontent.com"
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": [
+              "com.googleusercontent.apps.970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m"
+            ]
+          }
+        ]
       }
     },
     "splash": {
