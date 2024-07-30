@@ -184,3 +184,25 @@ const txn = await sequenceWaas.sendTransaction({
   ],
 });
 ```
+
+---
+
+#### Additional step if you get an error with react-native-quick-crypto alias/patch setup
+
+This is normally not needed but if you get an error about missing random number source after you add and configure the ethers patch for react-native-quick-crypto, you can add the following to your metro.config.js
+
+```
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (moduleName === 'crypto') {
+    return context.resolveRequest(
+      context,
+      'react-native-quick-crypto',
+      platform
+    );
+  }
+  // otherwise chain to the standard Metro resolver.
+  return context.resolveRequest(context, moduleName, platform);
+};
+
+module.exports = config;
+```
