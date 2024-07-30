@@ -54,7 +54,7 @@ Set the intent-filter in android > intentFilters in the app.json file.
 
 - expo-web-browser
 - expo-auth-session
-- @invertase/react-native-apple-authentication (use the forked version specified in the package.json)
+- @invertase/react-native-apple-authentication
 
 #### For Email login
 
