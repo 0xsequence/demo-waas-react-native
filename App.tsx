@@ -90,7 +90,7 @@ export default function App() {
       ],
     });
     setIsSendTxnInProgress(false);
-    if (txn.data?.txHash) {
+    if ("txHash" in txn.data) {
       setTxnHash(txn.data.txHash);
     }
   };
@@ -335,7 +335,11 @@ const signInWithGoogle = async () => {
     return undefined;
   }
 
-  const serverAuthCode = result?.params?.code;
+  if (result.type !== "success") {
+    throw new Error("Authentication failed");
+  }
+
+  const serverAuthCode = result.params?.code;
 
   const configForTokenExchange: AccessTokenRequestConfig = {
     code: serverAuthCode,
