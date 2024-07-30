@@ -91,7 +91,7 @@ export default function App() {
       ],
     });
     setIsSendTxnInProgress(false);
-    if (txn.data?.txHash) {
+    if ("txHash" in txn.data) {
       setTxnHash(txn.data.txHash);
     }
   };
