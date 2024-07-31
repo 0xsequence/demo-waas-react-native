@@ -239,7 +239,24 @@ export default function App() {
               Sequence WaaS Demo
             </Text>
           </View>
+
           <View style={{ alignItems: "center", justifyContent: "center" }}>
+            <Button
+              title="Sign in as guest"
+              onPress={async () => {
+                const signInResult = await sequenceWaas.signIn(
+                  { guest: true },
+                  randomName()
+                );
+
+                if (signInResult.wallet) {
+                  setWalletAddress(signInResult.wallet);
+                } else {
+                  console.error("No wallet address after guest sign in");
+                }
+              }}
+            />
+            <View style={{ marginTop: 10 }} />
             <Button
               title="Sign in with Email"
               onPress={() => {
@@ -366,7 +383,7 @@ const signInWithGoogle = async () => {
   const waasSession = await authenticateWithWaas(idToken);
 
   if (!waasSession) {
-    throw new Error("No waass session");
+    throw new Error("No WaaS session");
   }
 
   return {
@@ -405,7 +422,7 @@ const signInWithAppleIOS = async () => {
     const waasSession = await authenticateWithWaas(idToken);
 
     if (!waasSession) {
-      throw new Error("No waass session");
+      throw new Error("No WaaS session");
     }
 
     return {
@@ -447,7 +464,7 @@ const signInWithAppleAndroid = async () => {
   const waasSession = await authenticateWithWaas(idToken);
 
   if (!waasSession) {
-    throw new Error("No waas session");
+    throw new Error("No WaaS session");
   }
 
   return {
