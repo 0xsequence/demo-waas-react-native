@@ -7,7 +7,7 @@ import "react-native-url-polyfill/auto";
 import { ReadableStream } from "web-streams-polyfill";
 globalThis.ReadableStream = ReadableStream;
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
   Button,
@@ -24,7 +24,7 @@ import {
   exchangeCodeAsync,
   AccessTokenRequestConfig,
 } from "expo-auth-session";
-import { networks } from "@0xsequence/waas";
+import { EmailConflictInfo, networks } from "@0xsequence/waas";
 import * as WebBrowser from "expo-web-browser";
 import appleAuth, {
   AppleButton,
@@ -45,6 +45,7 @@ import EmailAuthView from "./components/EmailAuthView";
 import { randomName } from "./utils/string";
 
 import styles from "./styles";
+import EmailConflictWarningView from "./components/EmailConflictWarningView";
 
 const messageToSign = "Hello world";
 
@@ -64,11 +65,19 @@ export default function App() {
     isSignedIn(setWalletAddress);
   }, []);
 
+  const [emailConflictInfo, setEmailConflictInfo] = useState<
+    EmailConflictInfo | undefined
+  >();
+  const [isEmailConflictModalOpen, setIsEmailConflictModalOpen] =
+    useState(false);
+  const forceCreateFuncRef = useRef<(() => Promise<void>) | null>(null);
+
   sequenceWaas.onEmailConflict(async (info, forceCreate) => {
     console.log("onEmailConflict", info);
 
-    // This can be handled by the app by showing a dialog to the user, for demo purposes we will just force create a new session
-    forceCreate();
+    forceCreateFuncRef.current = forceCreate;
+    setEmailConflictInfo(info);
+    setIsEmailConflictModalOpen(true);
   });
 
   const signMessage = async () => {
@@ -106,6 +115,23 @@ export default function App() {
           onSuccess={(walletAddress) => {
             setIsEmailAuthInProgress(false);
             setWalletAddress(walletAddress);
+          }}
+        />
+      )}
+
+      {isEmailConflictModalOpen && (
+        <EmailConflictWarningView
+          info={emailConflictInfo}
+          onCancel={() => {
+            setIsEmailAuthInProgress(false);
+            setIsEmailConflictModalOpen(false);
+            setEmailConflictInfo(undefined);
+            forceCreateFuncRef.current = null;
+          }}
+          onConfirm={() => {
+            setIsEmailConflictModalOpen(false);
+            setEmailConflictInfo(undefined);
+            forceCreateFuncRef.current?.();
           }}
         />
       )}
@@ -372,7 +398,7 @@ const signInWithGoogle = async () => {
     tokenEndpoint: "https://oauth2.googleapis.com/token",
   });
 
-  const userInfo = await fetchUserInfo(tokenResponse.accessToken);
+  const userInfo = await fetchGoogleUserInfo(tokenResponse.accessToken);
 
   const idToken = tokenResponse.idToken;
 
@@ -494,7 +520,7 @@ const authenticateWithWaas = async (
   return null;
 };
 
-const fetchUserInfo = async (
+const fetchGoogleUserInfo = async (
   accessToken: string
 ): Promise<GoogleUser["user"]> => {
   const response = await fetch(
