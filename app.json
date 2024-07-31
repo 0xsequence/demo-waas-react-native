@@ -22,7 +22,6 @@
     },
     "ios": {
       "bundleIdentifier": "com.horizon.sequence-waas-demo",
-      "usesAppleSignIn": true,
       "infoPlist": {
         "GIDClientID": "277467576806-f8g9k1vu110ssa8lgt4fd2v1gjmc21as.apps.googleusercontent.com"
       }
