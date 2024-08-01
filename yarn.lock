@@ -7,64 +7,64 @@
   resolved "https://registry.yarnpkg.com/@0no-co/graphql.web/-/graphql.web-1.0.7.tgz#c7a762c887b3482a79ffa68f63de5e96059a62e4"
   integrity sha512-E3Qku4mTzdrlwVWGPxklDnME5ANrEGetvYw4i2GCRlppWXXE4QD66j7pwb8HelZwS6LnqEChhrSOGCXpbiu6MQ==
 
-"@0xsequence/abi@1.10.6":
-  version "1.10.6"
-  resolved "https://registry.yarnpkg.com/@0xsequence/abi/-/abi-1.10.6.tgz#c272296449aedc4e63e0048e373ba0ff23e0f37a"
-  integrity sha512-o5INBc8/NIlfQHpQF289YDaLmP3pIu9ZsI0ZC9v2ruQTGNZLkd0qu3iGH7y0dp8sbKJUbCgo1ThAvHo1pijEEg==
+"@0xsequence/abi@1.10.7":
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/@0xsequence/abi/-/abi-1.10.7.tgz#a9a9c728a0a3d27618cb329dc1b457ca721664b4"
+  integrity sha512-10kvQ9PpPPzPFEcpa3yqdznUaaK3VT93NTbziRt97QvMLuneQE96ZAR3uiSMwA+TjHjNC3GAO9Ku6fR+uUNdFQ==
 
-"@0xsequence/core@1.10.6":
-  version "1.10.6"
-  resolved "https://registry.yarnpkg.com/@0xsequence/core/-/core-1.10.6.tgz#0334ca28787c2ea0a7f108a5cbaa74793f08a02e"
-  integrity sha512-UtRdX8macH7F0eenXZgCqdkmRwvIbn5zbzLXmmbDxFD7BU70FFWCXAz1NHaBHgc339Z5tmGyALBohMtHtR6F7w==
+"@0xsequence/core@1.10.7":
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/@0xsequence/core/-/core-1.10.7.tgz#c23d95fcc321fd5c5c0bc0f6c094e4e5f7c9fe05"
+  integrity sha512-x1Oq3bmXtO+WduKUi7ebvNycRbPhTinMbjD7wwlVoVopctZTF2B+JpnNcxoMpVsCuLVPMH5EgPHkkZ8dHIk9bA==
   dependencies:
-    "@0xsequence/abi" "1.10.6"
+    "@0xsequence/abi" "1.10.7"
 
-"@0xsequence/indexer@1.10.6":
-  version "1.10.6"
-  resolved "https://registry.yarnpkg.com/@0xsequence/indexer/-/indexer-1.10.6.tgz#80d4d2ffcffee2fda7f37764f4fb4bf2a23c4632"
-  integrity sha512-HMUS0H07hIuHxOPwis4D7qpF9VQfFnXz5E+VVYIk/1YpIa9SvRBrepqrJO2fwE8XtJYZ2ZMavPWWCTTHWAqNHQ==
+"@0xsequence/indexer@1.10.7":
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/@0xsequence/indexer/-/indexer-1.10.7.tgz#342cbb3247799851e34ee1100fb26f7d3678bc90"
+  integrity sha512-y5rv9zk2XppFZIib5IIvFi74mcmQ2a5+8opsnAxnpJbX8IsDedWlZKWFHyNA2HWd3uczRTCnZmZ6BCv3kekSLA==
 
-"@0xsequence/network@1.10.6":
-  version "1.10.6"
-  resolved "https://registry.yarnpkg.com/@0xsequence/network/-/network-1.10.6.tgz#8acafafa091fd1b48a035c151432f5b4de96ef5a"
-  integrity sha512-xOVxvLiWlRH377ZyODELwo6SNIV6itugm/20BWgO5qu9DMk2Wk77e4n3u02k/KIQTYS8WoROpFIQUKAs5LD4mw==
+"@0xsequence/network@1.10.7":
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/@0xsequence/network/-/network-1.10.7.tgz#a4fd64d0a85ee22a3ebec6fe58ca221825b904d0"
+  integrity sha512-71P311+q3ownsT7Zi3FNRo+8HoycMR0LBE6sT+HH8kh0KzatzD0pNcH15Bql2bRhckakyG8HNz5EUDHIi4HDAw==
   dependencies:
-    "@0xsequence/core" "1.10.6"
-    "@0xsequence/indexer" "1.10.6"
-    "@0xsequence/relayer" "1.10.6"
-    "@0xsequence/utils" "1.10.6"
+    "@0xsequence/core" "1.10.7"
+    "@0xsequence/indexer" "1.10.7"
+    "@0xsequence/relayer" "1.10.7"
+    "@0xsequence/utils" "1.10.7"
 
-"@0xsequence/react-native@1.10.6":
-  version "1.10.6"
-  resolved "https://registry.yarnpkg.com/@0xsequence/react-native/-/react-native-1.10.6.tgz#1e934793c243775807e844c99c76a5dcafdbeed8"
-  integrity sha512-0+qvBPsmx8uRWACvgg1d/JAWEidsdhL26lJoHOJHv17rgWGGkh+v4ZNbQD11U0EnN1u3jcCSo9AEVGwalmo3CA==
+"@0xsequence/react-native@1.10.7":
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/@0xsequence/react-native/-/react-native-1.10.7.tgz#71eb00b71dc1c22cb800444d1d39ba1731db70fe"
+  integrity sha512-rOy2mcB5Uik4cCy5ASLei8XswECfkA0DbcY5EQ+xjSagXjVg28ZvMcfgaQ69GCl1QbTjhwFsTfB66N3t8ekGlw==
   dependencies:
-    "@0xsequence/waas" "1.10.6"
+    "@0xsequence/waas" "1.10.7"
     react-native-keychain "^8.2.0"
 
-"@0xsequence/relayer@1.10.6":
-  version "1.10.6"
-  resolved "https://registry.yarnpkg.com/@0xsequence/relayer/-/relayer-1.10.6.tgz#99912735000fef93b41a00aa97875bd18e1f7a64"
-  integrity sha512-L894ogLr9EPrc0cfd/veb5W2Fq/aGJSwU3VPiolJBDeOVczW9G1xkcukzD691LZsrWDf+azV32jaOp+l3IqCVA==
+"@0xsequence/relayer@1.10.7":
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/@0xsequence/relayer/-/relayer-1.10.7.tgz#25384ccac3f9150822f096786e34b028067c7bbb"
+  integrity sha512-k1EAdxIHC4FSqOlzKAFYwaj6gwk48+ZjjX3nT0LfNdcEBHwKhy98yfMAr1AowHuTjO+XAiA2j/hICQQ0ellJhg==
   dependencies:
-    "@0xsequence/abi" "1.10.6"
-    "@0xsequence/core" "1.10.6"
-    "@0xsequence/utils" "1.10.6"
+    "@0xsequence/abi" "1.10.7"
+    "@0xsequence/core" "1.10.7"
+    "@0xsequence/utils" "1.10.7"
 
-"@0xsequence/utils@1.10.6":
-  version "1.10.6"
-  resolved "https://registry.yarnpkg.com/@0xsequence/utils/-/utils-1.10.6.tgz#e002da0fe8be1d504901898c13f2a09c618fe4a5"
-  integrity sha512-9+kk4Nf7HOxJQI/qagYLDAS1uXL5Kh9ZvKhwjFhy42GovYsLSryYFOJu0PESydHYdbvZv2RoPoCPjBdKn9zkgA==
+"@0xsequence/utils@1.10.7":
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/@0xsequence/utils/-/utils-1.10.7.tgz#8103fea5084423e09a6d6f2da6895414135aef9e"
+  integrity sha512-JlCB/NyYV+zdndJmsVol0s5bVFUAfaeY8uy3UspxyM+OQAVONpUPuln6PIrzv3nR+jmDHNmWY5edbRpR6YNi7Q==
   dependencies:
     js-base64 "^3.7.2"
 
-"@0xsequence/waas@1.10.6":
-  version "1.10.6"
-  resolved "https://registry.yarnpkg.com/@0xsequence/waas/-/waas-1.10.6.tgz#8aecaf4ffb9b0c5e1596c621e1915fd485aba9a8"
-  integrity sha512-1o6lCaeCB77UnwAEoFHRCuBMeDNd/+2BEAolFrWFkuxoF7m76DQ1wHhGx7Kv/9JP/OiTR280vulcpjFwUN4+Og==
+"@0xsequence/waas@1.10.7":
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/@0xsequence/waas/-/waas-1.10.7.tgz#796760bf1e04f6b3a9a7acea28630cede2b90e2a"
+  integrity sha512-e7KdnPkGr245eNaxoyuZ7tQaBD+N4o95oCYZAdTZ5tjFw9ZCRnorX/jubx7oz8HlVpusp1bjkuwxfe7piT5wqA==
   dependencies:
-    "@0xsequence/core" "1.10.6"
-    "@0xsequence/network" "1.10.6"
+    "@0xsequence/core" "1.10.7"
+    "@0xsequence/network" "1.10.7"
     "@aws-sdk/client-cognito-identity-provider" "^3.445.0"
     idb "^7.1.1"
     json-canonicalize "^1.0.6"

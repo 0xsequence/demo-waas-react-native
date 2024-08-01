@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "@0xsequence/react-native": "1.10.6",
-    "@0xsequence/waas": "1.10.6",
+    "@0xsequence/react-native": "1.10.7",
+    "@0xsequence/waas": "1.10.7",
     "@ethersproject/shims": "^5.7.0",
     "@invertase/react-native-apple-authentication": "^2.3.0",
     "ethers": "5.7.2",
