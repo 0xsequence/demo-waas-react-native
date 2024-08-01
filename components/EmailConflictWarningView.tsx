@@ -54,7 +54,14 @@ export default function EmailConflictWarningView({
           </Text>
         </View>
 
-        <View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
           <Button title="Cancel sign in" onPress={onCancel} />
           <Button title="Create new account" onPress={onConfirm} />
         </View>

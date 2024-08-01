@@ -73,8 +73,6 @@ export default function App() {
   const forceCreateFuncRef = useRef<(() => Promise<void>) | null>(null);
 
   sequenceWaas.onEmailConflict(async (info, forceCreate) => {
-    console.log("onEmailConflict", info);
-
     forceCreateFuncRef.current = forceCreate;
     setEmailConflictInfo(info);
     setIsEmailConflictModalOpen(true);
