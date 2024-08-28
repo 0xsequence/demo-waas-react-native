@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "@0xsequence/react-native": "1.10.15",
-    "@0xsequence/waas": "1.10.15",
+    "@0xsequence/react-native": "2.0.0",
+    "@0xsequence/waas": "2.0.0",
     "@ethersproject/shims": "^5.7.0",
     "@invertase/react-native-apple-authentication": "^2.3.0",
-    "ethers": "5.7.2",
-    "expo": "~51.0.22",
+    "ethers": "6.13.2",
+    "expo": "~51.0.31",
     "expo-auth-session": "~5.5.2",
     "expo-clipboard": "~6.0.3",
     "expo-web-browser": "~13.0.3",

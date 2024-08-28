@@ -10,8 +10,6 @@ module.exports = function (api) {
             crypto: "react-native-quick-crypto",
             stream: "readable-stream",
             buffer: "@craftzdog/react-native-buffer",
-            "@ethersproject/pbkdf2":
-              "./react-native-quick-crypto-ethers-patch.js",
           },
         },
       ],
