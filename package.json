@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "@0xsequence/react-native": "1.10.7",
-    "@0xsequence/waas": "1.10.7",
+    "@0xsequence/react-native": "1.10.15",
+    "@0xsequence/waas": "1.10.15",
     "@ethersproject/shims": "^5.7.0",
     "@invertase/react-native-apple-authentication": "^2.3.0",
     "ethers": "5.7.2",
@@ -11,7 +11,7 @@
     "expo-web-browser": "~13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.74.3",
+    "react-native": "0.74.5",
     "react-native-keychain": "^8.2.0",
     "react-native-mmkv": "^2.12.2",
     "react-native-quick-crypto": "0.7.1",
