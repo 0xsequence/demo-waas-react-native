@@ -3,7 +3,7 @@
     "name": "Sequence WaaS Demo",
     "icon": "./assets/app-icon.png",
     "slug": "demo-waas-react-native",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "sdkVersion": "51.0.0",
     "platforms": ["ios", "android"],
     "android": {
