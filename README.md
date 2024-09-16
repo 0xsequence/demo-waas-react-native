@@ -14,6 +14,8 @@ https://github.com/0xsequence/demo-waas-react-native/assets/11508521/157cab83-1f
 2. Run `yarn install` to install dependencies
 3. Run `yarn ios` or `yarn android` to run the app on device/simulator
 
+Note: In case `yarn android` does not work for you at the first try, you may need to first run the project with Android Studio for gradle setup/sync.
+
 ---
 
 ## Setting up with your own credentials/keys
@@ -67,22 +69,56 @@ Set the intent-filter in android > intentFilters in the app.json file.
 
 ### 1. Setup shims for ethers and other crypto related packages
 
-Firstly, make sure to do this step as early in your apps lifecycle as possible. In this demo these are imported and set at the top in [App.tsx](./App.tsx).
+First, let's check contents of [cryptoSetup.ts](./cryptoSetup.ts) for the set up of the shims and registering `pbkdf2` for `ethers` from `react-native-quick-crypto` below:
 
 ```ts
 import { install } from "react-native-quick-crypto";
 install();
 
-import "@ethersproject/shims";
-
 import "react-native-url-polyfill/auto";
 import { ReadableStream } from "web-streams-polyfill";
 globalThis.ReadableStream = ReadableStream;
+
+import crypto from "react-native-quick-crypto";
+global.getRandomValues = crypto.getRandomValues;
+
+export * from "@ethersproject/shims";
+
+import * as ethers from "ethers";
+
+ethers.pbkdf2.register(
+  (
+    password: Uint8Array,
+    salt: Uint8Array,
+    iterations: number,
+    keylen: number,
+    algo: "sha256" | "sha512"
+  ) => {
+    console.info("Using react-native-quick-crypto for pbkdf2");
+    return ethers.hexlify(
+      new Uint8Array(
+        crypto.pbkdf2Sync(
+          password,
+          salt,
+          iterations,
+          keylen,
+          algo === "sha256" ? "SHA-256" : "SHA-512"
+        )
+      )
+    );
+  }
+);
+
+export * from "ethers";
 ```
 
-Secondly, we need to set aliases for the shims, in `babel.config.js` with help of the dev dependency `babel-plugin-module-resolver`, and also we need to make sure to use `pbkdf2` from `react-native-quick-crypto`. This helps us speed up the random value generation. See [babel.config.js](./babel.config.js) for the code snippet to update the aliases.
+Then make sure to import `cryptoSetup.ts` as early in the app lifecycle as you can. In this demo these are imported and set at the top in [App.tsx](./App.tsx).
 
-(See https://github.com/ethers-io/ethers.js/issues/2250#issuecomment-1321134111 for more details on react-native-quick-crypto alias setup)
+```ts
+import "./cryptoSetup";
+```
+
+Secondly, we need to set aliases for some shims, in `babel.config.js` with help of the `babel-plugin-module-resolver` dev dependency. See [babel.config.js](./babel.config.js) for the code snippet to update the aliases.
 
 ### 2. Initialize Sequence Embedded Wallet (WaaS)
 
@@ -185,24 +221,8 @@ const txn = await sequenceWaas.sendTransaction({
 });
 ```
 
----
+## Migration notes for Ethers v6 update
 
-#### Additional step if you get an error with react-native-quick-crypto alias/patch setup
+- `react-native-quick-crypto-ethers-patch.js` and related configuration is no longer needed since ethers v6 allows us to register the pbkdf2 function directly from the `react-native-quick-crypto` package. (See [cryptoSetup.ts](./cryptoSetup.ts) for the related code.)
 
-This is normally not needed but if you get an error about missing random number source after you add and configure the ethers patch for react-native-quick-crypto, you can add the following to your metro.config.js
-
-```
-config.resolver.resolveRequest = (context, moduleName, platform) => {
-  if (moduleName === 'crypto') {
-    return context.resolveRequest(
-      context,
-      'react-native-quick-crypto',
-      platform
-    );
-  }
-  // otherwise chain to the standard Metro resolver.
-  return context.resolveRequest(context, moduleName, platform);
-};
-
-module.exports = config;
-```
+- You can follow [ethers migration guide](https://docs.ethers.org/v6/migrating/) to migrate your codebase to ethers v6.

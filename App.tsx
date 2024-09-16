@@ -1,11 +1,4 @@
-import { install } from "react-native-quick-crypto";
-install();
-
-import "@ethersproject/shims";
-
-import "react-native-url-polyfill/auto";
-import { ReadableStream } from "web-streams-polyfill";
-globalThis.ReadableStream = ReadableStream;
+import "./cryptoSetup";
 
 import { useEffect, useRef, useState } from "react";
 import {
