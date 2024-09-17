@@ -43,7 +43,7 @@ Set the intent-filter in android > intentFilters in the app.json file.
 
 #### Common
 
-- ethers (5.7.2)
+- ethers
 - ethersproject/shims
 - expo
 - react-native-quick-crypto
