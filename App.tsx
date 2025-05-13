@@ -54,6 +54,8 @@ export default function App() {
   const [isSendTxnInProgress, setIsSendTxnInProgress] = useState(false);
   const [txnHash, setTxnHash] = useState<string | undefined>();
 
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
   useEffect(() => {
     isSignedIn(setWalletAddress);
   }, []);
@@ -257,64 +259,96 @@ export default function App() {
             </Text>
           </View>
 
-          <View style={{ alignItems: "center", justifyContent: "center" }}>
-            <Button
-              title="Sign in as guest"
-              onPress={async () => {
-                const signInResult = await sequenceWaas.signIn(
-                  { guest: true },
-                  randomName()
-                );
-
-                if (signInResult.wallet) {
-                  setWalletAddress(signInResult.wallet);
-                } else {
-                  console.error("No wallet address after guest sign in");
-                }
-              }}
-            />
-            <View style={{ marginTop: 10 }} />
-            <Button
-              title="Sign in with Email"
-              onPress={() => {
-                setIsEmailAuthInProgress(true);
-              }}
-            />
-            <View style={{ marginTop: 10 }} />
-            <Button
-              title="Sign in with Google"
-              onPress={async () => {
-                const result = await signInWithGoogle();
-                if (result.walletAddress) {
-                  setWalletAddress(result.walletAddress);
-                }
-              }}
-            />
-            <View style={{ marginTop: 10 }} />
-            <AppleButton
-              buttonStyle={AppleButton.Style.WHITE}
-              buttonType={AppleButton.Type.SIGN_IN}
+          {isLoggingIn ? (
+            <View
               style={{
-                width: 160, // You must specify a width
-                height: 45, // You must specify a height
+                alignItems: "center",
+                justifyContent: "center",
+                paddingVertical: 20,
               }}
-              onPress={async () => {
-                if (Platform.OS === "ios") {
-                  const result = await signInWithAppleIOS();
-                  if (result.walletAddress) {
-                    setWalletAddress(result.walletAddress);
-                  }
-                }
-                if (Platform.OS === "android") {
-                  const result = await signInWithAppleAndroid();
+            >
+              <ActivityIndicator size="large" color="#fff" />
+            </View>
+          ) : (
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Button
+                title="Sign in as guest"
+                onPress={async () => {
+                  setIsLoggingIn(true);
+                  try {
+                    const signInResult = await sequenceWaas.signIn(
+                      { guest: true },
+                      randomName()
+                    );
 
-                  if (result.walletAddress) {
-                    setWalletAddress(result.walletAddress);
+                    if (signInResult.wallet) {
+                      setWalletAddress(signInResult.wallet);
+                    } else {
+                      console.error("No wallet address after guest sign in");
+                    }
+                  } catch (error) {
+                    console.error("Guest sign in failed:", error);
+                  } finally {
+                    setIsLoggingIn(false);
                   }
-                }
-              }}
-            />
-          </View>
+                }}
+              />
+              <View style={{ marginTop: 10 }} />
+              <Button
+                title="Sign in with Email"
+                onPress={() => {
+                  setIsEmailAuthInProgress(true);
+                }}
+              />
+              <View style={{ marginTop: 10 }} />
+              <Button
+                title="Sign in with Google"
+                onPress={async () => {
+                  setIsLoggingIn(true);
+                  try {
+                    const result = await signInWithGoogle();
+                    if (result?.walletAddress) {
+                      setWalletAddress(result.walletAddress);
+                    }
+                  } catch (error) {
+                    console.error("Google sign in failed:", error);
+                  } finally {
+                    setIsLoggingIn(false);
+                  }
+                }}
+              />
+              <View style={{ marginTop: 10 }} />
+              <AppleButton
+                buttonStyle={AppleButton.Style.WHITE}
+                buttonType={AppleButton.Type.SIGN_IN}
+                style={{
+                  width: 160,
+                  height: 45,
+                }}
+                onPress={async () => {
+                  setIsLoggingIn(true);
+                  try {
+                    if (Platform.OS === "ios") {
+                      const result = await signInWithAppleIOS();
+                      if (result?.walletAddress) {
+                        setWalletAddress(result.walletAddress);
+                      }
+                    }
+                    if (Platform.OS === "android") {
+                      const result = await signInWithAppleAndroid();
+                      if (result?.walletAddress) {
+                        setWalletAddress(result.walletAddress);
+                      }
+                    }
+                  } catch (error) {
+                    console.error("Apple sign in failed:", error);
+                  } finally {
+                    setIsLoggingIn(false);
+                  }
+                }}
+              />
+            </View>
+          )}
         </>
       )}
     </View>
