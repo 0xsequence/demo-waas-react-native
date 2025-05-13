@@ -5,7 +5,10 @@
     "slug": "demo-waas-react-native",
     "version": "1.0.5",
     "sdkVersion": "51.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "android": {
       "package": "com.horizon.sequencewaasdemo",
       "intentFilters": [
@@ -16,7 +19,10 @@
               "scheme": "com.googleusercontent.apps.970987756660-eu0kjc9mda0iuiuktoq0lbme9mmn1j8m"
             }
           ],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
       ]
     },
@@ -34,6 +40,9 @@
         "projectId": "fc60d2f6-fa65-4cf1-a438-2b197b7bae39"
       }
     },
-    "owner": "tolgahan.arikan"
+    "owner": "tolgahan.arikan",
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }

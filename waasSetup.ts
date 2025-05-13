@@ -1,6 +1,61 @@
-import { SequenceWaaS } from "@0xsequence/waas";
-import { KeychainSecureStoreBackend } from "@0xsequence/react-native";
+import { SequenceWaaS, SecureStoreBackend } from "@0xsequence/waas";
+import * as SecureStore from "expo-secure-store";
 import { MMKV } from "react-native-mmkv";
+
+class ExpoSecureStoreBackend implements SecureStoreBackend {
+  private getKey(dbName: string, dbStoreName: string, key: string): string {
+    return `${dbName}-${dbStoreName}-${key}`;
+  }
+
+  async get(
+    dbName: string,
+    dbStoreName: string,
+    key: string
+  ): Promise<any | null> {
+    const fullKey = this.getKey(dbName, dbStoreName, key);
+    try {
+      const value = await SecureStore.getItemAsync(fullKey);
+      return value ? JSON.parse(value) : null;
+    } catch (error) {
+      console.error(`Failed to get item from SecureStore: ${fullKey}`, error);
+      return null;
+    }
+  }
+
+  async set(
+    dbName: string,
+    dbStoreName: string,
+    key: string,
+    value: any
+  ): Promise<boolean> {
+    const fullKey = this.getKey(dbName, dbStoreName, key);
+    try {
+      await SecureStore.setItemAsync(fullKey, JSON.stringify(value));
+      return true;
+    } catch (error) {
+      console.error(`Failed to set item in SecureStore: ${fullKey}`, error);
+      return false;
+    }
+  }
+
+  async delete(
+    dbName: string,
+    dbStoreName: string,
+    key: string
+  ): Promise<boolean> {
+    const fullKey = this.getKey(dbName, dbStoreName, key);
+    try {
+      await SecureStore.deleteItemAsync(fullKey);
+      return true;
+    } catch (error) {
+      console.error(
+        `Failed to delete item from SecureStore: ${fullKey}`,
+        error
+      );
+      return false;
+    }
+  }
+}
 
 const projectAccessKey = "AQAAAAAAAI9WEA9-IwH6yjyN0Ts0jEK-8Qk";
 const waasConfigKey =
@@ -38,5 +93,5 @@ export const sequenceWaas = new SequenceWaaS(
   },
   localStorage,
   null,
-  new KeychainSecureStoreBackend()
+  new ExpoSecureStoreBackend()
 );
