@@ -48,7 +48,7 @@ Set the intent-filter in android > intentFilters in the app.json file.
 - expo
 - react-native-quick-crypto
 - react-native-mmkv
-- react-native-keychain
+- expo-secure-store
 
 - babel-plugin-module-resolver (as dev dependency)
 
@@ -131,7 +131,7 @@ export const sequenceWaas = new SequenceWaaS(
   },
   localStorage,
   null,
-  new KeychainSecureStoreBackend()
+  new ExpoSecureStoreBackend()
 );
 ```
 
@@ -220,9 +220,3 @@ const txn = await sequenceWaas.sendTransaction({
   ],
 });
 ```
-
-## Migration notes for Ethers v6 update
-
-- `react-native-quick-crypto-ethers-patch.js` and related configuration is no longer needed since ethers v6 allows us to register the pbkdf2 function directly from the `react-native-quick-crypto` package. (See [cryptoSetup.ts](./cryptoSetup.ts) for the related code.)
-
-- You can follow [ethers migration guide](https://docs.ethers.org/v6/migrating/) to migrate your codebase to ethers v6.

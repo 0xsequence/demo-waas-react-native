@@ -35,14 +35,6 @@
     "@0xsequence/relayer" "2.2.14"
     "@0xsequence/utils" "2.2.14"
 
-"@0xsequence/react-native@2.2.14":
-  version "2.2.14"
-  resolved "https://registry.yarnpkg.com/@0xsequence/react-native/-/react-native-2.2.14.tgz#3d2f44f23bd234db6ce31d8cc893f00e618961c6"
-  integrity sha512-h7Aul/IHd4RGO+L+LduaG8kwPXhCJ/QEk2HQ9ZGzctsMbIXCb+De0fTTEc122muPgfyzSxh9ieuNIxyVJEAPgQ==
-  dependencies:
-    "@0xsequence/waas" "2.2.14"
-    react-native-keychain "^8.2.0"
-
 "@0xsequence/relayer@2.2.14":
   version "2.2.14"
   resolved "https://registry.yarnpkg.com/@0xsequence/relayer/-/relayer-2.2.14.tgz#0e26b411a5623fd0a14b57062a698e7f5bbfc649"
@@ -4353,6 +4345,11 @@ expo-modules-core@1.12.24:
   dependencies:
     invariant "^2.2.4"
 
+expo-secure-store@~13.0.2:
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/expo-secure-store/-/expo-secure-store-13.0.2.tgz#ba8f6076fc38062a28bb2ce5edab9cd28ef88598"
+  integrity sha512-3QYgoneo8p8yeeBPBiAfokNNc2xq6+n8+Ob4fAlErEcf4H7Y72LH+K/dx0nQyWau2ZKZUXBxyyfuHFyVKrEVLg==
+
 expo-web-browser@~13.0.0, expo-web-browser@~13.0.3:
   version "13.0.3"
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-13.0.3.tgz#dceb05dbc187b498ca937b02adf385b0232a4e92"
@@ -6707,11 +6704,6 @@ react-is@^18.0.0:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.3.1.tgz#e83557dc12eae63a99e003a46388b1dcbb44db7e"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
-
-react-native-keychain@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-8.2.0.tgz#aea82df37aacbb04f8b567a8e0e6d7292025610a"
-  integrity sha512-SkRtd9McIl1Ss2XSWNLorG+KMEbgeVqX+gV+t3u1EAAqT8q2/OpRmRbxpneT2vnb/dMhiU7g6K/pf3nxLUXRvA==
 
 react-native-mmkv@^2.12.2:
   version "2.12.2"

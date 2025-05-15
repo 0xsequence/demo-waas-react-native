@@ -3,7 +3,7 @@
     "name": "Sequence WaaS Demo",
     "icon": "./assets/app-icon.png",
     "slug": "demo-waas-react-native",
-    "version": "1.0.5",
+    "version": "1.0.7",
     "sdkVersion": "51.0.0",
     "platforms": ["ios", "android"],
     "android": {
@@ -34,6 +34,7 @@
         "projectId": "fc60d2f6-fa65-4cf1-a438-2b197b7bae39"
       }
     },
-    "owner": "tolgahan.arikan"
+    "owner": "tolgahan.arikan",
+    "plugins": ["expo-secure-store"]
   }
 }
