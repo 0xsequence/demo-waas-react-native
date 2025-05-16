@@ -1,4 +1,4 @@
-import * as ethers from "../cryptoSetup"; // Adjusted path
+import * as ethers from "../cryptoSetup";
 
 describe("Custom Ethers Setup", () => {
   it("should use the custom pbkdf2 implementation", () => {
@@ -11,7 +11,7 @@ describe("Custom Ethers Setup", () => {
 
     const password = "password";
     const salt = "salt";
-    const iterations = 2048; // Standard iterations
+    const iterations = 2048;
     const keylen = 32; // 256-bit key
     const algo = "sha256";
 
@@ -33,8 +33,6 @@ describe("Custom Ethers Setup", () => {
     // Restore the original console.info
     consoleInfoSpy.mockRestore();
 
-    // You might want to add a check for the derivedKey value if you have a known-good output
-    // For now, confirming the log message is a good indicator.
     expect(derivedKey).toBeDefined();
     expect(ethers.getBytes(derivedKey).length).toBe(keylen);
   });
