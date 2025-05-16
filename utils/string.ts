@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { wordlists } from "../cryptoSetup";
 
 const DEVICE_EMOJIS = [
   // 256 emojis for unsigned byte range 0 - 255
@@ -9,7 +9,7 @@ const DEVICE_EMOJIS = [
 // from the list of words of ethers
 export function randomName() {
   const wordlistSize = 2048;
-  const words = ethers.wordlists.en;
+  const words = wordlists.en;
 
   const randomEmoji =
     DEVICE_EMOJIS[Math.floor(Math.random() * DEVICE_EMOJIS.length)];

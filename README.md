@@ -112,6 +112,48 @@ ethers.pbkdf2.register(
 export * from "ethers";
 ```
 
+**Important Note on `ethers` Usage:**
+
+To ensure consistent `ethers` version and shimming across your project, always import `ethers` utilities from the local [`./cryptoSetup.ts`](./cryptoSetup.ts:1) file. You can do this in two main ways:
+
+1.  Import all exports under the `ethers` namespace:
+
+    ```ts
+    import * as ethers from "./cryptoSetup";
+    // Now you can use ethers.Wallet, ethers.utils, etc.
+    ```
+
+2.  Import specific named members:
+    ```ts
+    import { Wallet, Contract, utils } from "./cryptoSetup";
+    ```
+
+Do **not** import directly from the `ethers` package (e.g., `import { ethers } from 'ethers';` or `import * as ethers from 'ethers'`).
+
+To enforce this pattern, you can add the following ESLint rule to your configuration (e.g., in [`eslint.config.js`](eslint.config.js:1)):
+
+```javascript
+// eslint.config.js or similar
+{
+  // ... other configurations
+  rules: {
+    "no-restricted-imports": [
+      "error",
+      {
+        paths: [
+          {
+            name: "ethers", // This targets the original 'ethers' package
+            message: "Please import 'ethers' members from './cryptoSetup.ts' instead to use the project-specific version and shims."
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+This demo project already includes a similar rule to guide imports. The key is to ensure that any attempt to import directly from the `"ethers"` package is flagged.
+
 Then make sure to import `cryptoSetup.ts` as early in the app lifecycle as you can. In this demo these are imported and set at the top in [App.tsx](./App.tsx).
 
 ```ts
