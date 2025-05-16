@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "dependencies": {
     "@0xsequence/waas": "2.2.14",
     "@ethersproject/shims": "^5.7.0",
