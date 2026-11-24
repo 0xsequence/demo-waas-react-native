@@ -1,3 +1,11 @@
+<!-- archived-repository-notice -->
+> [!WARNING]
+> **This repository is archived and no longer maintained.**
+>
+> It is part of the legacy Sequence stack and is kept here for reference only.
+> It will not receive bug fixes, security patches or releases, and packages,
+> images or deployments built from it are not supported.
+
 # Sequence Embedded Wallet React Native Demo
 
 A demo app to help developers integrate Sequence Embedded Wallet into their React Native apps. It comes with credentials/keys set up for Google, Apple and Email sign in. Follow the instructions below to set up your own credentials/keys and integrate to your own app.
